@@ -3,14 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "24.0.13",
-    "@types/node": "12.0.1",
-    "@types/react": "16.8.17",
-    "@types/react-dom": "16.8.4",
+    "@reach/router": "^1.2.1",
+    "apollo-boost": "^0.3.1",
+    "apollo-client": "^2.5.1",
+    "aws-amplify": "^1.1.26",
+    "aws-appsync": "^1.7.2",
+    "aws-appsync-react": "^1.2.7",
+    "graphql": "^14.2.1",
+    "graphql-tag": "^2.10.1",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.5",
+    "react-apollo-hooks": "^0.4.5",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
-    "typescript": "3.4.5"
+    "react-markdown": "^4.0.8",
+    "react-scripts": "3.0.0",
+    "typescript": "^3.4.5",
+    "govuk-react": "^0.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,5 +44,27 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@storybook/addon-actions": "^5.0.11",
+    "@storybook/addon-links": "^5.0.11",
+    "@storybook/addons": "^5.0.11",
+    "@storybook/react": "^5.0.11",
+    "@types/classnames": "^2.2.7",
+    "@types/jest": "^24.0.12",
+    "@types/node": "^12.0.0",
+    "@types/reach__router": "^1.2.4",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-test-renderer": "^16.8.1",
+    "@types/storybook__react": "^4.0.1",
+    "babel-loader": "^8.0.5",
+    "classnames": "^2.2.6",
+    "eslint": "^5.16.0",
+    "hygen": "^4.0.2",
+    "node-sass": "^4.12.0",
+    "react-test-renderer": "^16.8.6",
+    "styled-components": "^4.2.0"
   }
 }
