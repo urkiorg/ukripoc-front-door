@@ -9,6 +9,7 @@
     "aws-amplify": "^1.1.26",
     "aws-appsync": "^1.7.2",
     "aws-appsync-react": "^1.2.7",
+    "govuk-react": "^0.7.0",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
     "react": "^16.8.6",
@@ -17,8 +18,7 @@
     "react-dom": "^16.8.6",
     "react-markdown": "^4.0.8",
     "react-scripts": "3.0.0",
-    "typescript": "^3.4.5",
-    "govuk-react": "^0.7.0"
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -59,12 +59,15 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-test-renderer": "^16.8.1",
     "@types/storybook__react": "^4.0.1",
-    "babel-loader": "^8.0.5",
     "classnames": "^2.2.6",
     "eslint": "^5.16.0",
     "hygen": "^4.0.2",
     "node-sass": "^4.12.0",
     "react-test-renderer": "^16.8.6",
+    "babel-loader": "8.0.5",
     "styled-components": "^4.2.0"
+  },
+  "resolutions": {
+    "babel-jest": "24.7.1"
   }
 }
