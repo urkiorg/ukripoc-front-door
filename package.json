@@ -16,7 +16,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "new-component": "hygen component new --name ",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public -o dist/storybook",
+    "build:ci": "yarn build-storybook && yarn build && mv build dist/preview && cp src/index.html dist/"
   },
   "eslintConfig": {
     "extends": "react-app"
