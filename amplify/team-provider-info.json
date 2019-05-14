@@ -10,5 +10,22 @@
             "StackName": "ukripoc-front-door-develop-20190514095524",
             "StackId": "arn:aws:cloudformation:eu-west-1:475991803334:stack/ukripoc-front-door-develop-20190514095524/041f0f50-7626-11e9-9084-02925b9a5d4e"
         }
+    },
+    "fddev": {
+        "awscloudformation": {
+            "AuthRoleName": "ukripoc-front-door-fddev-20190514135627-authRole",
+            "UnauthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-fddev-20190514135627-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-fddev-20190514135627-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "ukripoc-front-door-fddev-20190514135627-deployment",
+            "UnauthRoleName": "ukripoc-front-door-fddev-20190514135627-unauthRole",
+            "StackName": "ukripoc-front-door-fddev-20190514135627",
+            "StackId": "arn:aws:cloudformation:eu-west-1:475991803334:stack/ukripoc-front-door-fddev-20190514135627/affc64a0-7647-11e9-a5fb-023c5f756674"
+        },
+        "categories": {
+            "auth": {
+                "cognito177965fd": {}
+            }
+        }
     }
 }
