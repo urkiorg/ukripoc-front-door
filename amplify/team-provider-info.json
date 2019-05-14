@@ -1,0 +1,14 @@
+{
+    "develop": {
+        "awscloudformation": {
+            "AuthRoleName": "ukripoc-front-door-develop-20190514095524-authRole",
+            "UnauthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-develop-20190514095524-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-develop-20190514095524-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "ukripoc-front-door-develop-20190514095524-deployment",
+            "UnauthRoleName": "ukripoc-front-door-develop-20190514095524-unauthRole",
+            "StackName": "ukripoc-front-door-develop-20190514095524",
+            "StackId": "arn:aws:cloudformation:eu-west-1:475991803334:stack/ukripoc-front-door-develop-20190514095524/041f0f50-7626-11e9-9084-02925b9a5d4e"
+        }
+    }
+}
