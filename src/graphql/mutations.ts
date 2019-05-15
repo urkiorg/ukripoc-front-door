@@ -6,6 +6,8 @@ export const createOpportunity = `mutation CreateOpportunity($input: CreateOppor
     id
     name
     description
+    openDate
+    closeDate
     funders {
       items {
         id
@@ -13,16 +15,6 @@ export const createOpportunity = `mutation CreateOpportunity($input: CreateOppor
       }
       nextToken
     }
-    fundersComplete
-    teammembers {
-      items {
-        id
-        name
-        role
-      }
-      nextToken
-    }
-    teammembersComplete
     type {
       id
       name
@@ -31,12 +23,10 @@ export const createOpportunity = `mutation CreateOpportunity($input: CreateOppor
         id
         name
         description
-        fundersComplete
-        teammembersComplete
-        typeComplete
+        openDate
+        closeDate
       }
     }
-    typeComplete
   }
 }
 `;
@@ -45,6 +35,8 @@ export const updateOpportunity = `mutation UpdateOpportunity($input: UpdateOppor
     id
     name
     description
+    openDate
+    closeDate
     funders {
       items {
         id
@@ -52,16 +44,6 @@ export const updateOpportunity = `mutation UpdateOpportunity($input: UpdateOppor
       }
       nextToken
     }
-    fundersComplete
-    teammembers {
-      items {
-        id
-        name
-        role
-      }
-      nextToken
-    }
-    teammembersComplete
     type {
       id
       name
@@ -70,12 +52,10 @@ export const updateOpportunity = `mutation UpdateOpportunity($input: UpdateOppor
         id
         name
         description
-        fundersComplete
-        teammembersComplete
-        typeComplete
+        openDate
+        closeDate
       }
     }
-    typeComplete
   }
 }
 `;
@@ -84,6 +64,8 @@ export const deleteOpportunity = `mutation DeleteOpportunity($input: DeleteOppor
     id
     name
     description
+    openDate
+    closeDate
     funders {
       items {
         id
@@ -91,16 +73,6 @@ export const deleteOpportunity = `mutation DeleteOpportunity($input: DeleteOppor
       }
       nextToken
     }
-    fundersComplete
-    teammembers {
-      items {
-        id
-        name
-        role
-      }
-      nextToken
-    }
-    teammembersComplete
     type {
       id
       name
@@ -109,12 +81,10 @@ export const deleteOpportunity = `mutation DeleteOpportunity($input: DeleteOppor
         id
         name
         description
-        fundersComplete
-        teammembersComplete
-        typeComplete
+        openDate
+        closeDate
       }
     }
-    typeComplete
   }
 }
 `;
@@ -126,20 +96,16 @@ export const createFunder = `mutation CreateFunder($input: CreateFunderInput!) {
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }
@@ -152,20 +118,16 @@ export const updateFunder = `mutation UpdateFunder($input: UpdateFunderInput!) {
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }
@@ -178,101 +140,16 @@ export const deleteFunder = `mutation DeleteFunder($input: DeleteFunderInput!) {
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
-    }
-  }
-}
-`;
-export const createTeamMember = `mutation CreateTeamMember($input: CreateTeamMemberInput!) {
-  createTeamMember(input: $input) {
-    id
-    name
-    role
-    opportunity {
-      id
-      name
-      description
-      funders {
-        nextToken
-      }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
-      type {
-        id
-        name
-        description
-      }
-      typeComplete
-    }
-  }
-}
-`;
-export const updateTeamMember = `mutation UpdateTeamMember($input: UpdateTeamMemberInput!) {
-  updateTeamMember(input: $input) {
-    id
-    name
-    role
-    opportunity {
-      id
-      name
-      description
-      funders {
-        nextToken
-      }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
-      type {
-        id
-        name
-        description
-      }
-      typeComplete
-    }
-  }
-}
-`;
-export const deleteTeamMember = `mutation DeleteTeamMember($input: DeleteTeamMemberInput!) {
-  deleteTeamMember(input: $input) {
-    id
-    name
-    role
-    opportunity {
-      id
-      name
-      description
-      funders {
-        nextToken
-      }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
-      type {
-        id
-        name
-        description
-      }
-      typeComplete
     }
   }
 }
@@ -286,20 +163,16 @@ export const createOpportunityType = `mutation CreateOpportunityType($input: Cre
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }
@@ -313,20 +186,16 @@ export const updateOpportunityType = `mutation UpdateOpportunityType($input: Upd
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }
@@ -340,20 +209,16 @@ export const deleteOpportunityType = `mutation DeleteOpportunityType($input: Del
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }

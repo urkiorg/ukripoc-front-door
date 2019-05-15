@@ -1,0 +1,1 @@
+export { OpportunityIndexPage } from "./OpportunityIndexPage";

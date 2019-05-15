@@ -6,6 +6,8 @@ export const onCreateOpportunity = `subscription OnCreateOpportunity {
     id
     name
     description
+    openDate
+    closeDate
     funders {
       items {
         id
@@ -13,16 +15,6 @@ export const onCreateOpportunity = `subscription OnCreateOpportunity {
       }
       nextToken
     }
-    fundersComplete
-    teammembers {
-      items {
-        id
-        name
-        role
-      }
-      nextToken
-    }
-    teammembersComplete
     type {
       id
       name
@@ -31,12 +23,10 @@ export const onCreateOpportunity = `subscription OnCreateOpportunity {
         id
         name
         description
-        fundersComplete
-        teammembersComplete
-        typeComplete
+        openDate
+        closeDate
       }
     }
-    typeComplete
   }
 }
 `;
@@ -45,6 +35,8 @@ export const onUpdateOpportunity = `subscription OnUpdateOpportunity {
     id
     name
     description
+    openDate
+    closeDate
     funders {
       items {
         id
@@ -52,16 +44,6 @@ export const onUpdateOpportunity = `subscription OnUpdateOpportunity {
       }
       nextToken
     }
-    fundersComplete
-    teammembers {
-      items {
-        id
-        name
-        role
-      }
-      nextToken
-    }
-    teammembersComplete
     type {
       id
       name
@@ -70,12 +52,10 @@ export const onUpdateOpportunity = `subscription OnUpdateOpportunity {
         id
         name
         description
-        fundersComplete
-        teammembersComplete
-        typeComplete
+        openDate
+        closeDate
       }
     }
-    typeComplete
   }
 }
 `;
@@ -84,6 +64,8 @@ export const onDeleteOpportunity = `subscription OnDeleteOpportunity {
     id
     name
     description
+    openDate
+    closeDate
     funders {
       items {
         id
@@ -91,16 +73,6 @@ export const onDeleteOpportunity = `subscription OnDeleteOpportunity {
       }
       nextToken
     }
-    fundersComplete
-    teammembers {
-      items {
-        id
-        name
-        role
-      }
-      nextToken
-    }
-    teammembersComplete
     type {
       id
       name
@@ -109,12 +81,10 @@ export const onDeleteOpportunity = `subscription OnDeleteOpportunity {
         id
         name
         description
-        fundersComplete
-        teammembersComplete
-        typeComplete
+        openDate
+        closeDate
       }
     }
-    typeComplete
   }
 }
 `;
@@ -126,20 +96,16 @@ export const onCreateFunder = `subscription OnCreateFunder {
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }
@@ -152,20 +118,16 @@ export const onUpdateFunder = `subscription OnUpdateFunder {
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }
@@ -178,101 +140,16 @@ export const onDeleteFunder = `subscription OnDeleteFunder {
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
-    }
-  }
-}
-`;
-export const onCreateTeamMember = `subscription OnCreateTeamMember {
-  onCreateTeamMember {
-    id
-    name
-    role
-    opportunity {
-      id
-      name
-      description
-      funders {
-        nextToken
-      }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
-      type {
-        id
-        name
-        description
-      }
-      typeComplete
-    }
-  }
-}
-`;
-export const onUpdateTeamMember = `subscription OnUpdateTeamMember {
-  onUpdateTeamMember {
-    id
-    name
-    role
-    opportunity {
-      id
-      name
-      description
-      funders {
-        nextToken
-      }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
-      type {
-        id
-        name
-        description
-      }
-      typeComplete
-    }
-  }
-}
-`;
-export const onDeleteTeamMember = `subscription OnDeleteTeamMember {
-  onDeleteTeamMember {
-    id
-    name
-    role
-    opportunity {
-      id
-      name
-      description
-      funders {
-        nextToken
-      }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
-      type {
-        id
-        name
-        description
-      }
-      typeComplete
     }
   }
 }
@@ -286,20 +163,16 @@ export const onCreateOpportunityType = `subscription OnCreateOpportunityType {
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }
@@ -313,20 +186,16 @@ export const onUpdateOpportunityType = `subscription OnUpdateOpportunityType {
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }
@@ -340,20 +209,16 @@ export const onDeleteOpportunityType = `subscription OnDeleteOpportunityType {
       id
       name
       description
+      openDate
+      closeDate
       funders {
         nextToken
       }
-      fundersComplete
-      teammembers {
-        nextToken
-      }
-      teammembersComplete
       type {
         id
         name
         description
       }
-      typeComplete
     }
   }
 }

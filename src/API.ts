@@ -5,9 +5,8 @@ export type CreateOpportunityInput = {
   id?: string | null,
   name: string,
   description?: string | null,
-  fundersComplete?: boolean | null,
-  teammembersComplete?: boolean | null,
-  typeComplete?: boolean | null,
+  openDate?: string | null,
+  closeDate?: string | null,
   opportunityTypeId?: string | null,
 };
 
@@ -15,9 +14,8 @@ export type UpdateOpportunityInput = {
   id: string,
   name?: string | null,
   description?: string | null,
-  fundersComplete?: boolean | null,
-  teammembersComplete?: boolean | null,
-  typeComplete?: boolean | null,
+  openDate?: string | null,
+  closeDate?: string | null,
   opportunityTypeId?: string | null,
 };
 
@@ -38,24 +36,6 @@ export type UpdateFunderInput = {
 };
 
 export type DeleteFunderInput = {
-  id?: string | null,
-};
-
-export type CreateTeamMemberInput = {
-  id?: string | null,
-  name: string,
-  role?: string | null,
-  teamMemberOpportunityId?: string | null,
-};
-
-export type UpdateTeamMemberInput = {
-  id: string,
-  name?: string | null,
-  role?: string | null,
-  teamMemberOpportunityId?: string | null,
-};
-
-export type DeleteTeamMemberInput = {
   id?: string | null,
 };
 
@@ -81,9 +61,8 @@ export type ModelOpportunityFilterInput = {
   id?: ModelIDFilterInput | null,
   name?: ModelStringFilterInput | null,
   description?: ModelStringFilterInput | null,
-  fundersComplete?: ModelBooleanFilterInput | null,
-  teammembersComplete?: ModelBooleanFilterInput | null,
-  typeComplete?: ModelBooleanFilterInput | null,
+  openDate?: ModelStringFilterInput | null,
+  closeDate?: ModelStringFilterInput | null,
   and?: Array< ModelOpportunityFilterInput | null > | null,
   or?: Array< ModelOpportunityFilterInput | null > | null,
   not?: ModelOpportunityFilterInput | null,
@@ -115,26 +94,12 @@ export type ModelStringFilterInput = {
   beginsWith?: string | null,
 };
 
-export type ModelBooleanFilterInput = {
-  ne?: boolean | null,
-  eq?: boolean | null,
-};
-
 export type ModelFunderFilterInput = {
   id?: ModelIDFilterInput | null,
   name?: ModelStringFilterInput | null,
   and?: Array< ModelFunderFilterInput | null > | null,
   or?: Array< ModelFunderFilterInput | null > | null,
   not?: ModelFunderFilterInput | null,
-};
-
-export type ModelTeamMemberFilterInput = {
-  id?: ModelIDFilterInput | null,
-  name?: ModelStringFilterInput | null,
-  role?: ModelStringFilterInput | null,
-  and?: Array< ModelTeamMemberFilterInput | null > | null,
-  or?: Array< ModelTeamMemberFilterInput | null > | null,
-  not?: ModelTeamMemberFilterInput | null,
 };
 
 export type ModelOpportunityTypeFilterInput = {
@@ -156,6 +121,8 @@ export type CreateOpportunityMutation = {
     id: string,
     name: string,
     description: string | null,
+    openDate: string | null,
+    closeDate: string | null,
     funders:  {
       __typename: "ModelFunderConnection",
       items:  Array< {
@@ -165,18 +132,6 @@ export type CreateOpportunityMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    fundersComplete: boolean | null,
-    teammembers:  {
-      __typename: "ModelTeamMemberConnection",
-      items:  Array< {
-        __typename: "TeamMember",
-        id: string,
-        name: string,
-        role: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    teammembersComplete: boolean | null,
     type:  {
       __typename: "OpportunityType",
       id: string,
@@ -187,12 +142,10 @@ export type CreateOpportunityMutation = {
         id: string,
         name: string,
         description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
+        openDate: string | null,
+        closeDate: string | null,
       } | null,
     } | null,
-    typeComplete: boolean | null,
   } | null,
 };
 
@@ -206,6 +159,8 @@ export type UpdateOpportunityMutation = {
     id: string,
     name: string,
     description: string | null,
+    openDate: string | null,
+    closeDate: string | null,
     funders:  {
       __typename: "ModelFunderConnection",
       items:  Array< {
@@ -215,18 +170,6 @@ export type UpdateOpportunityMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    fundersComplete: boolean | null,
-    teammembers:  {
-      __typename: "ModelTeamMemberConnection",
-      items:  Array< {
-        __typename: "TeamMember",
-        id: string,
-        name: string,
-        role: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    teammembersComplete: boolean | null,
     type:  {
       __typename: "OpportunityType",
       id: string,
@@ -237,12 +180,10 @@ export type UpdateOpportunityMutation = {
         id: string,
         name: string,
         description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
+        openDate: string | null,
+        closeDate: string | null,
       } | null,
     } | null,
-    typeComplete: boolean | null,
   } | null,
 };
 
@@ -256,6 +197,8 @@ export type DeleteOpportunityMutation = {
     id: string,
     name: string,
     description: string | null,
+    openDate: string | null,
+    closeDate: string | null,
     funders:  {
       __typename: "ModelFunderConnection",
       items:  Array< {
@@ -265,18 +208,6 @@ export type DeleteOpportunityMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    fundersComplete: boolean | null,
-    teammembers:  {
-      __typename: "ModelTeamMemberConnection",
-      items:  Array< {
-        __typename: "TeamMember",
-        id: string,
-        name: string,
-        role: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    teammembersComplete: boolean | null,
     type:  {
       __typename: "OpportunityType",
       id: string,
@@ -287,12 +218,10 @@ export type DeleteOpportunityMutation = {
         id: string,
         name: string,
         description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
+        openDate: string | null,
+        closeDate: string | null,
       } | null,
     } | null,
-    typeComplete: boolean | null,
   } | null,
 };
 
@@ -310,23 +239,18 @@ export type CreateFunderMutation = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -345,23 +269,18 @@ export type UpdateFunderMutation = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -380,131 +299,18 @@ export type DeleteFunderMutation = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
-    } | null,
-  } | null,
-};
-
-export type CreateTeamMemberMutationVariables = {
-  input: CreateTeamMemberInput,
-};
-
-export type CreateTeamMemberMutation = {
-  createTeamMember:  {
-    __typename: "TeamMember",
-    id: string,
-    name: string,
-    role: string | null,
-    opportunity:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-      typeComplete: boolean | null,
-    } | null,
-  } | null,
-};
-
-export type UpdateTeamMemberMutationVariables = {
-  input: UpdateTeamMemberInput,
-};
-
-export type UpdateTeamMemberMutation = {
-  updateTeamMember:  {
-    __typename: "TeamMember",
-    id: string,
-    name: string,
-    role: string | null,
-    opportunity:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-      typeComplete: boolean | null,
-    } | null,
-  } | null,
-};
-
-export type DeleteTeamMemberMutationVariables = {
-  input: DeleteTeamMemberInput,
-};
-
-export type DeleteTeamMemberMutation = {
-  deleteTeamMember:  {
-    __typename: "TeamMember",
-    id: string,
-    name: string,
-    role: string | null,
-    opportunity:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -524,23 +330,18 @@ export type CreateOpportunityTypeMutation = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -560,23 +361,18 @@ export type UpdateOpportunityTypeMutation = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -596,23 +392,18 @@ export type DeleteOpportunityTypeMutation = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -627,6 +418,8 @@ export type GetOpportunityQuery = {
     id: string,
     name: string,
     description: string | null,
+    openDate: string | null,
+    closeDate: string | null,
     funders:  {
       __typename: "ModelFunderConnection",
       items:  Array< {
@@ -636,18 +429,6 @@ export type GetOpportunityQuery = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    fundersComplete: boolean | null,
-    teammembers:  {
-      __typename: "ModelTeamMemberConnection",
-      items:  Array< {
-        __typename: "TeamMember",
-        id: string,
-        name: string,
-        role: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    teammembersComplete: boolean | null,
     type:  {
       __typename: "OpportunityType",
       id: string,
@@ -658,12 +439,10 @@ export type GetOpportunityQuery = {
         id: string,
         name: string,
         description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
+        openDate: string | null,
+        closeDate: string | null,
       } | null,
     } | null,
-    typeComplete: boolean | null,
   } | null,
 };
 
@@ -681,23 +460,18 @@ export type ListOpportunitysQuery = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -717,23 +491,18 @@ export type GetFunderQuery = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -756,73 +525,8 @@ export type ListFundersQuery = {
         id: string,
         name: string,
         description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
-      } | null,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type GetTeamMemberQueryVariables = {
-  id: string,
-};
-
-export type GetTeamMemberQuery = {
-  getTeamMember:  {
-    __typename: "TeamMember",
-    id: string,
-    name: string,
-    role: string | null,
-    opportunity:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-      typeComplete: boolean | null,
-    } | null,
-  } | null,
-};
-
-export type ListTeamMembersQueryVariables = {
-  filter?: ModelTeamMemberFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListTeamMembersQuery = {
-  listTeamMembers:  {
-    __typename: "ModelTeamMemberConnection",
-    items:  Array< {
-      __typename: "TeamMember",
-      id: string,
-      name: string,
-      role: string | null,
-      opportunity:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
+        openDate: string | null,
+        closeDate: string | null,
       } | null,
     } | null > | null,
     nextToken: string | null,
@@ -844,23 +548,18 @@ export type GetOpportunityTypeQuery = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -884,9 +583,8 @@ export type ListOpportunityTypesQuery = {
         id: string,
         name: string,
         description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
+        openDate: string | null,
+        closeDate: string | null,
       } | null,
     } | null > | null,
     nextToken: string | null,
@@ -899,6 +597,8 @@ export type OnCreateOpportunitySubscription = {
     id: string,
     name: string,
     description: string | null,
+    openDate: string | null,
+    closeDate: string | null,
     funders:  {
       __typename: "ModelFunderConnection",
       items:  Array< {
@@ -908,18 +608,6 @@ export type OnCreateOpportunitySubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    fundersComplete: boolean | null,
-    teammembers:  {
-      __typename: "ModelTeamMemberConnection",
-      items:  Array< {
-        __typename: "TeamMember",
-        id: string,
-        name: string,
-        role: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    teammembersComplete: boolean | null,
     type:  {
       __typename: "OpportunityType",
       id: string,
@@ -930,12 +618,10 @@ export type OnCreateOpportunitySubscription = {
         id: string,
         name: string,
         description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
+        openDate: string | null,
+        closeDate: string | null,
       } | null,
     } | null,
-    typeComplete: boolean | null,
   } | null,
 };
 
@@ -945,6 +631,8 @@ export type OnUpdateOpportunitySubscription = {
     id: string,
     name: string,
     description: string | null,
+    openDate: string | null,
+    closeDate: string | null,
     funders:  {
       __typename: "ModelFunderConnection",
       items:  Array< {
@@ -954,18 +642,6 @@ export type OnUpdateOpportunitySubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    fundersComplete: boolean | null,
-    teammembers:  {
-      __typename: "ModelTeamMemberConnection",
-      items:  Array< {
-        __typename: "TeamMember",
-        id: string,
-        name: string,
-        role: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    teammembersComplete: boolean | null,
     type:  {
       __typename: "OpportunityType",
       id: string,
@@ -976,12 +652,10 @@ export type OnUpdateOpportunitySubscription = {
         id: string,
         name: string,
         description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
+        openDate: string | null,
+        closeDate: string | null,
       } | null,
     } | null,
-    typeComplete: boolean | null,
   } | null,
 };
 
@@ -991,6 +665,8 @@ export type OnDeleteOpportunitySubscription = {
     id: string,
     name: string,
     description: string | null,
+    openDate: string | null,
+    closeDate: string | null,
     funders:  {
       __typename: "ModelFunderConnection",
       items:  Array< {
@@ -1000,18 +676,6 @@ export type OnDeleteOpportunitySubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    fundersComplete: boolean | null,
-    teammembers:  {
-      __typename: "ModelTeamMemberConnection",
-      items:  Array< {
-        __typename: "TeamMember",
-        id: string,
-        name: string,
-        role: string | null,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    teammembersComplete: boolean | null,
     type:  {
       __typename: "OpportunityType",
       id: string,
@@ -1022,12 +686,10 @@ export type OnDeleteOpportunitySubscription = {
         id: string,
         name: string,
         description: string | null,
-        fundersComplete: boolean | null,
-        teammembersComplete: boolean | null,
-        typeComplete: boolean | null,
+        openDate: string | null,
+        closeDate: string | null,
       } | null,
     } | null,
-    typeComplete: boolean | null,
   } | null,
 };
 
@@ -1041,23 +703,18 @@ export type OnCreateFunderSubscription = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -1072,23 +729,18 @@ export type OnUpdateFunderSubscription = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -1103,119 +755,18 @@ export type OnDeleteFunderSubscription = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
-    } | null,
-  } | null,
-};
-
-export type OnCreateTeamMemberSubscription = {
-  onCreateTeamMember:  {
-    __typename: "TeamMember",
-    id: string,
-    name: string,
-    role: string | null,
-    opportunity:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-      typeComplete: boolean | null,
-    } | null,
-  } | null,
-};
-
-export type OnUpdateTeamMemberSubscription = {
-  onUpdateTeamMember:  {
-    __typename: "TeamMember",
-    id: string,
-    name: string,
-    role: string | null,
-    opportunity:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-      typeComplete: boolean | null,
-    } | null,
-  } | null,
-};
-
-export type OnDeleteTeamMemberSubscription = {
-  onDeleteTeamMember:  {
-    __typename: "TeamMember",
-    id: string,
-    name: string,
-    role: string | null,
-    opportunity:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -1231,23 +782,18 @@ export type OnCreateOpportunityTypeSubscription = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -1263,23 +809,18 @@ export type OnUpdateOpportunityTypeSubscription = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
@@ -1295,23 +836,18 @@ export type OnDeleteOpportunityTypeSubscription = {
       id: string,
       name: string,
       description: string | null,
+      openDate: string | null,
+      closeDate: string | null,
       funders:  {
         __typename: "ModelFunderConnection",
         nextToken: string | null,
       } | null,
-      fundersComplete: boolean | null,
-      teammembers:  {
-        __typename: "ModelTeamMemberConnection",
-        nextToken: string | null,
-      } | null,
-      teammembersComplete: boolean | null,
       type:  {
         __typename: "OpportunityType",
         id: string,
         name: string,
         description: string,
       } | null,
-      typeComplete: boolean | null,
     } | null,
   } | null,
 };
