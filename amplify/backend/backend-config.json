@@ -8,10 +8,13 @@
 			}
 		}
 	},
-	"auth": {
-		"cognito177965fd": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
+	"auth": {},
+	"function": {
+		"opportunityingest": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": []
 		}
 	}
 }

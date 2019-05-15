@@ -21,11 +21,6 @@
             "UnauthRoleName": "ukripoc-front-door-fddev-20190514135627-unauthRole",
             "StackName": "ukripoc-front-door-fddev-20190514135627",
             "StackId": "arn:aws:cloudformation:eu-west-1:475991803334:stack/ukripoc-front-door-fddev-20190514135627/affc64a0-7647-11e9-a5fb-023c5f756674"
-        },
-        "categories": {
-            "auth": {
-                "cognito177965fd": {}
-            }
         }
     }
 }
