@@ -16,17 +16,7 @@ export interface Opportunity {
     description: string | null;
     openDate: string | null;
     closeDate: string | null;
-    funders: {
-        __typename: "ModelFunderConnection";
-        items: Array<{ id: string; name: string }>;
-        nextToken: string | null;
-    } | null;
-    type: {
-        __typename: "OpportunityType";
-        id: string;
-        name: string;
-        description: string;
-    } | null;
+    funders: string[] | null;
 }
 
 export const OpportunityIndex: FC<Props> = ({ opportunities }) => {

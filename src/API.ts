@@ -7,7 +7,7 @@ export type CreateOpportunityInput = {
   description?: string | null,
   openDate?: string | null,
   closeDate?: string | null,
-  opportunityTypeId?: string | null,
+  funders?: Array< string | null > | null,
 };
 
 export type UpdateOpportunityInput = {
@@ -16,44 +16,10 @@ export type UpdateOpportunityInput = {
   description?: string | null,
   openDate?: string | null,
   closeDate?: string | null,
-  opportunityTypeId?: string | null,
+  funders?: Array< string | null > | null,
 };
 
 export type DeleteOpportunityInput = {
-  id?: string | null,
-};
-
-export type CreateFunderInput = {
-  id?: string | null,
-  name: string,
-  funderOpportunitiesId?: string | null,
-};
-
-export type UpdateFunderInput = {
-  id: string,
-  name?: string | null,
-  funderOpportunitiesId?: string | null,
-};
-
-export type DeleteFunderInput = {
-  id?: string | null,
-};
-
-export type CreateOpportunityTypeInput = {
-  id?: string | null,
-  name: string,
-  description: string,
-  opportunityTypeOpportunitiesId?: string | null,
-};
-
-export type UpdateOpportunityTypeInput = {
-  id: string,
-  name?: string | null,
-  description?: string | null,
-  opportunityTypeOpportunitiesId?: string | null,
-};
-
-export type DeleteOpportunityTypeInput = {
   id?: string | null,
 };
 
@@ -63,6 +29,7 @@ export type ModelOpportunityFilterInput = {
   description?: ModelStringFilterInput | null,
   openDate?: ModelStringFilterInput | null,
   closeDate?: ModelStringFilterInput | null,
+  funders?: ModelStringFilterInput | null,
   and?: Array< ModelOpportunityFilterInput | null > | null,
   or?: Array< ModelOpportunityFilterInput | null > | null,
   not?: ModelOpportunityFilterInput | null,
@@ -94,23 +61,6 @@ export type ModelStringFilterInput = {
   beginsWith?: string | null,
 };
 
-export type ModelFunderFilterInput = {
-  id?: ModelIDFilterInput | null,
-  name?: ModelStringFilterInput | null,
-  and?: Array< ModelFunderFilterInput | null > | null,
-  or?: Array< ModelFunderFilterInput | null > | null,
-  not?: ModelFunderFilterInput | null,
-};
-
-export type ModelOpportunityTypeFilterInput = {
-  id?: ModelIDFilterInput | null,
-  name?: ModelStringFilterInput | null,
-  description?: ModelStringFilterInput | null,
-  and?: Array< ModelOpportunityTypeFilterInput | null > | null,
-  or?: Array< ModelOpportunityTypeFilterInput | null > | null,
-  not?: ModelOpportunityTypeFilterInput | null,
-};
-
 export type CreateOpportunityMutationVariables = {
   input: CreateOpportunityInput,
 };
@@ -123,29 +73,7 @@ export type CreateOpportunityMutation = {
     description: string | null,
     openDate: string | null,
     closeDate: string | null,
-    funders:  {
-      __typename: "ModelFunderConnection",
-      items:  Array< {
-        __typename: "Funder",
-        id: string,
-        name: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    type:  {
-      __typename: "OpportunityType",
-      id: string,
-      name: string,
-      description: string,
-      opportunities:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        openDate: string | null,
-        closeDate: string | null,
-      } | null,
-    } | null,
+    funders: Array< string | null > | null,
   } | null,
 };
 
@@ -161,29 +89,7 @@ export type UpdateOpportunityMutation = {
     description: string | null,
     openDate: string | null,
     closeDate: string | null,
-    funders:  {
-      __typename: "ModelFunderConnection",
-      items:  Array< {
-        __typename: "Funder",
-        id: string,
-        name: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    type:  {
-      __typename: "OpportunityType",
-      id: string,
-      name: string,
-      description: string,
-      opportunities:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        openDate: string | null,
-        closeDate: string | null,
-      } | null,
-    } | null,
+    funders: Array< string | null > | null,
   } | null,
 };
 
@@ -199,212 +105,7 @@ export type DeleteOpportunityMutation = {
     description: string | null,
     openDate: string | null,
     closeDate: string | null,
-    funders:  {
-      __typename: "ModelFunderConnection",
-      items:  Array< {
-        __typename: "Funder",
-        id: string,
-        name: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    type:  {
-      __typename: "OpportunityType",
-      id: string,
-      name: string,
-      description: string,
-      opportunities:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        openDate: string | null,
-        closeDate: string | null,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type CreateFunderMutationVariables = {
-  input: CreateFunderInput,
-};
-
-export type CreateFunderMutation = {
-  createFunder:  {
-    __typename: "Funder",
-    id: string,
-    name: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type UpdateFunderMutationVariables = {
-  input: UpdateFunderInput,
-};
-
-export type UpdateFunderMutation = {
-  updateFunder:  {
-    __typename: "Funder",
-    id: string,
-    name: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type DeleteFunderMutationVariables = {
-  input: DeleteFunderInput,
-};
-
-export type DeleteFunderMutation = {
-  deleteFunder:  {
-    __typename: "Funder",
-    id: string,
-    name: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type CreateOpportunityTypeMutationVariables = {
-  input: CreateOpportunityTypeInput,
-};
-
-export type CreateOpportunityTypeMutation = {
-  createOpportunityType:  {
-    __typename: "OpportunityType",
-    id: string,
-    name: string,
-    description: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type UpdateOpportunityTypeMutationVariables = {
-  input: UpdateOpportunityTypeInput,
-};
-
-export type UpdateOpportunityTypeMutation = {
-  updateOpportunityType:  {
-    __typename: "OpportunityType",
-    id: string,
-    name: string,
-    description: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type DeleteOpportunityTypeMutationVariables = {
-  input: DeleteOpportunityTypeInput,
-};
-
-export type DeleteOpportunityTypeMutation = {
-  deleteOpportunityType:  {
-    __typename: "OpportunityType",
-    id: string,
-    name: string,
-    description: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
+    funders: Array< string | null > | null,
   } | null,
 };
 
@@ -420,29 +121,7 @@ export type GetOpportunityQuery = {
     description: string | null,
     openDate: string | null,
     closeDate: string | null,
-    funders:  {
-      __typename: "ModelFunderConnection",
-      items:  Array< {
-        __typename: "Funder",
-        id: string,
-        name: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    type:  {
-      __typename: "OpportunityType",
-      id: string,
-      name: string,
-      description: string,
-      opportunities:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        openDate: string | null,
-        closeDate: string | null,
-      } | null,
-    } | null,
+    funders: Array< string | null > | null,
   } | null,
 };
 
@@ -462,130 +141,7 @@ export type ListOpportunitysQuery = {
       description: string | null,
       openDate: string | null,
       closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type GetFunderQueryVariables = {
-  id: string,
-};
-
-export type GetFunderQuery = {
-  getFunder:  {
-    __typename: "Funder",
-    id: string,
-    name: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type ListFundersQueryVariables = {
-  filter?: ModelFunderFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListFundersQuery = {
-  listFunders:  {
-    __typename: "ModelFunderConnection",
-    items:  Array< {
-      __typename: "Funder",
-      id: string,
-      name: string,
-      opportunities:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        openDate: string | null,
-        closeDate: string | null,
-      } | null,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type GetOpportunityTypeQueryVariables = {
-  id: string,
-};
-
-export type GetOpportunityTypeQuery = {
-  getOpportunityType:  {
-    __typename: "OpportunityType",
-    id: string,
-    name: string,
-    description: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type ListOpportunityTypesQueryVariables = {
-  filter?: ModelOpportunityTypeFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListOpportunityTypesQuery = {
-  listOpportunityTypes:  {
-    __typename: "ModelOpportunityTypeConnection",
-    items:  Array< {
-      __typename: "OpportunityType",
-      id: string,
-      name: string,
-      description: string,
-      opportunities:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        openDate: string | null,
-        closeDate: string | null,
-      } | null,
+      funders: Array< string | null > | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -599,29 +155,7 @@ export type OnCreateOpportunitySubscription = {
     description: string | null,
     openDate: string | null,
     closeDate: string | null,
-    funders:  {
-      __typename: "ModelFunderConnection",
-      items:  Array< {
-        __typename: "Funder",
-        id: string,
-        name: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    type:  {
-      __typename: "OpportunityType",
-      id: string,
-      name: string,
-      description: string,
-      opportunities:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        openDate: string | null,
-        closeDate: string | null,
-      } | null,
-    } | null,
+    funders: Array< string | null > | null,
   } | null,
 };
 
@@ -633,29 +167,7 @@ export type OnUpdateOpportunitySubscription = {
     description: string | null,
     openDate: string | null,
     closeDate: string | null,
-    funders:  {
-      __typename: "ModelFunderConnection",
-      items:  Array< {
-        __typename: "Funder",
-        id: string,
-        name: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    type:  {
-      __typename: "OpportunityType",
-      id: string,
-      name: string,
-      description: string,
-      opportunities:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        openDate: string | null,
-        closeDate: string | null,
-      } | null,
-    } | null,
+    funders: Array< string | null > | null,
   } | null,
 };
 
@@ -667,187 +179,6 @@ export type OnDeleteOpportunitySubscription = {
     description: string | null,
     openDate: string | null,
     closeDate: string | null,
-    funders:  {
-      __typename: "ModelFunderConnection",
-      items:  Array< {
-        __typename: "Funder",
-        id: string,
-        name: string,
-      } | null > | null,
-      nextToken: string | null,
-    } | null,
-    type:  {
-      __typename: "OpportunityType",
-      id: string,
-      name: string,
-      description: string,
-      opportunities:  {
-        __typename: "Opportunity",
-        id: string,
-        name: string,
-        description: string | null,
-        openDate: string | null,
-        closeDate: string | null,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type OnCreateFunderSubscription = {
-  onCreateFunder:  {
-    __typename: "Funder",
-    id: string,
-    name: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type OnUpdateFunderSubscription = {
-  onUpdateFunder:  {
-    __typename: "Funder",
-    id: string,
-    name: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type OnDeleteFunderSubscription = {
-  onDeleteFunder:  {
-    __typename: "Funder",
-    id: string,
-    name: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type OnCreateOpportunityTypeSubscription = {
-  onCreateOpportunityType:  {
-    __typename: "OpportunityType",
-    id: string,
-    name: string,
-    description: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type OnUpdateOpportunityTypeSubscription = {
-  onUpdateOpportunityType:  {
-    __typename: "OpportunityType",
-    id: string,
-    name: string,
-    description: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
-  } | null,
-};
-
-export type OnDeleteOpportunityTypeSubscription = {
-  onDeleteOpportunityType:  {
-    __typename: "OpportunityType",
-    id: string,
-    name: string,
-    description: string,
-    opportunities:  {
-      __typename: "Opportunity",
-      id: string,
-      name: string,
-      description: string | null,
-      openDate: string | null,
-      closeDate: string | null,
-      funders:  {
-        __typename: "ModelFunderConnection",
-        nextToken: string | null,
-      } | null,
-      type:  {
-        __typename: "OpportunityType",
-        id: string,
-        name: string,
-        description: string,
-      } | null,
-    } | null,
+    funders: Array< string | null > | null,
   } | null,
 };

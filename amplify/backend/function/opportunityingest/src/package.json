@@ -6,7 +6,7 @@
     "license": "Apache-2.0",
     "scripts": {
         "build": "parcel build index.ts --target node --out-dir build --bundle-node-modules",
-        "postinstall": "npm run build && rm -rf node_modules && touch package.json"
+        "postinstall": "npm run build &&  touch package.json"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.25",

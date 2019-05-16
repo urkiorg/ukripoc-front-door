@@ -3,42 +3,10 @@ import gql from "graphql-tag";
 import { useQuery } from "react-apollo-hooks";
 import { OpportunityIndex } from "../OpportunityIndex";
 import LoadingBox from "@govuk-react/loading-box";
+import { listOpportunitys } from "../../graphql/queries";
 interface Props extends HTMLAttributes<HTMLElement> {}
 
-const LIST_OPPORTUNITIES = gql`
-    query ListOpportunitys(
-        $filter: ModelOpportunityFilterInput
-        $limit: Int
-        $nextToken: String
-    ) {
-        listOpportunitys(
-            filter: $filter
-            limit: $limit
-            nextToken: $nextToken
-        ) {
-            items {
-                id
-                name
-                description
-                openDate
-                closeDate
-                funders {
-                    items {
-                        id
-                        name
-                    }
-                    nextToken
-                }
-                type {
-                    id
-                    name
-                    description
-                }
-            }
-            nextToken
-        }
-    }
-`;
+const LIST_OPPORTUNITIES = gql(listOpportunitys);
 
 export const OpportunityIndexPage: FC<Props> = ({ ...props }) => {
     const { data, error, loading } = useQuery(LIST_OPPORTUNITIES, {

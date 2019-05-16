@@ -1,13 +1,63 @@
 import { Handler } from "aws-lambda";
+import { DynamoDB } from "aws-sdk";
+
 import { api } from "../../../amplify-meta.json";
 
-export const handler: Handler = (event, context) => {
-    console.log("## ENVIRONMENT VARIABLES");
-    console.log(JSON.stringify(process.env, null, 2));
-    console.log("## EVENT ");
-    console.log(JSON.stringify(event, null, 2));
+export const getDBTableName = (env: string, apiId: string, type: string) =>
+    `${type}-${apiId}-${env}`;
 
-    console.log("## META ");
-    console.log(JSON.stringify(api.frontdoor.output.GraphQLAPIIdOutput));
-    context.done(undefined, "Hello World"); // SUCCESS with message
+export const handler: Handler = async (
+    event: OpportunityUpdateEvent,
+    context
+) => {
+    const apiId = api.frontdoor.output.GraphQLAPIIdOutput;
+    const client = new DynamoDB.DocumentClient({
+        region: "eu-west-1"
+    });
+
+    const env = process.env.env;
+
+    if (!env || !apiId) {
+        context.done(new Error("Missing env"));
+        return;
+    }
+
+    const TableName = getDBTableName(env, apiId, "Opportunity");
+    console.log({ TableName });
+
+    const now = new Date().toISOString();
+
+    let { id, name, description, openDate, closeDate, funders } = event;
+
+    let { Item } = await client.get({ TableName, Key: { id } }).promise();
+
+    if (!Item) {
+        console.log("New item");
+        Item = {
+            __typename: "Opportunity",
+            createdAt: now,
+            updatedAt: now
+        };
+    } else {
+        console.log("Updated item");
+
+        Item.updatedAt = now;
+    }
+
+    await client
+        .put({
+            TableName,
+            Item: {
+                ...Item,
+                id,
+                name,
+                description,
+                openDate,
+                closeDate,
+                funders
+            }
+        })
+        .promise();
+
+    context.done(undefined, "Success");
 };

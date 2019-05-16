@@ -4,19 +4,5 @@ type Opportunity @model {
     description: String
     openDate: String
     closeDate: String
-    funders: [Funder] @connection(name: "OpportunityFunders")
-    type: OpportunityType @connection(name: "OpportunityTypes")
-}
-
-type Funder @model {
-    id: ID!
-    name: String!
-    opportunities: Opportunity @connection(name: "OpportunityFunders")
-}
-
-type OpportunityType @model {
-    id: ID!
-    name: String!
-    description: String!
-    opportunities: Opportunity @connection(name: "OpportunityTypes")
+    funders: [String]
 }

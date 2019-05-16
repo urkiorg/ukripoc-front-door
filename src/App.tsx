@@ -4,13 +4,11 @@ import Amplify from "aws-amplify";
 import Auth from "@aws-amplify/auth";
 import AWSAppSyncClient, { AUTH_TYPE } from "aws-appsync";
 import { ApolloProvider } from "react-apollo-hooks";
-import { Rehydrated } from "aws-appsync-react";
 import Main from "@govuk-react/main";
 
 import { Router, Link } from "@reach/router";
 import { Route } from "./components/Route";
 
-import { AllOpportunities } from "./components/AllOpportunities";
 import { NewOpportunityPage } from "./components/NewOpportunityPage";
 
 import config from "./aws-exports";

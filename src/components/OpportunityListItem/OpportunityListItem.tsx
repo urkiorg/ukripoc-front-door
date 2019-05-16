@@ -15,7 +15,7 @@ export const OpportunityListItem: FC<Props> = ({ opportunity: opp }) => {
     if (!opp) {
         return null;
     }
-    const funders = opp.funders ? opp.funders.items : [] || [];
+    const funders = opp.funders || [];
     return (
         <section key={opp.id}>
             <H4>{opp.name}</H4>
@@ -24,14 +24,11 @@ export const OpportunityListItem: FC<Props> = ({ opportunity: opp }) => {
                 <GridRow>
                     <GridCol setWidth="30%">
                         <Label>
-                            {" "}
                             {funders.length === 1 ? "Funder" : "Funders"}:
                         </Label>
                     </GridCol>
                     <GridCol>
-                        <Label>
-                            {funders.map(funder => funder.name).join(", ")}
-                        </Label>
+                        <Label>{funders.join(", ")}</Label>
                     </GridCol>
                 </GridRow>
             )}
