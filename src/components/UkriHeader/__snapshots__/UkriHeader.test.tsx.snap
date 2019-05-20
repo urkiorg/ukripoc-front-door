@@ -1,26 +1,129 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UkriHeader renders correctly 1`] = `
-<div
-  className="sc-kgoBCf ljNgMA"
->
+Array [
   <div
-    className="sc-kGXeez fnbpCo"
+    className="sc-htpNat dPcZRk"
   >
     <div
-      className="sc-kpOJdX jTygax"
+      className="sc-bZQynM cavRvu"
     >
-      <a
-        className="sc-kAzzGY bzlQfF"
-        href="/"
+      <div
+        className="sc-ifAKCX dAMALV"
       >
-        <img
-          alt="UK Research and Innovation"
-          className="sc-chPdSV eADRhK"
-          src="logo.png"
-        />
-      </a>
+        <a
+          className="sc-bdVaJa kwKwSe"
+          href="/"
+        >
+          <img
+            alt="UK Research and Innovation"
+            className="sc-bwzfXH ibrCQJ"
+            src="logo.png"
+          />
+        </a>
+        <span
+          className="sc-bxivhb bpARL"
+        >
+          Funding service
+        </span>
+      </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    className="sc-EHOje etgbYq"
+  >
+    <div
+      className="sc-bZQynM cavRvu"
+      style={
+        Object {
+          "backgroundColor": "#e4e4e4",
+        }
+      }
+    >
+      <nav
+        className="sc-gzVnrw bcYJEE"
+      >
+        <a
+          aria-current="page"
+          className="sc-htoDjs WcQyC"
+          href="/"
+          onClick={[Function]}
+        >
+          <span>
+            Home
+          </span>
+        </a>
+        <a
+          className="sc-htoDjs WcQyC"
+          href="/opportunity"
+          onClick={[Function]}
+        >
+          <span>
+            Opportunities
+          </span>
+        </a>
+        <a
+          aria-current="page"
+          className="sc-htoDjs WcQyC"
+          href="/"
+          onClick={[Function]}
+        >
+          <span>
+            Schedule
+          </span>
+        </a>
+        <a
+          aria-current="page"
+          className="sc-htoDjs WcQyC"
+          href="/"
+          onClick={[Function]}
+        >
+          <span>
+            Reporting
+          </span>
+        </a>
+        <a
+          aria-current="page"
+          className="sc-htoDjs WcQyC"
+          href="/"
+          onClick={[Function]}
+        >
+          <span>
+            User & Organisation
+          </span>
+        </a>
+        <a
+          aria-current="page"
+          className="sc-htoDjs WcQyC"
+          href="/"
+          onClick={[Function]}
+        >
+          <span>
+            Award setup
+          </span>
+        </a>
+        <a
+          aria-current="page"
+          className="sc-htoDjs WcQyC"
+          href="/"
+          onClick={[Function]}
+        >
+          <span>
+            Award
+          </span>
+        </a>
+        <a
+          aria-current="page"
+          className="sc-htoDjs WcQyC"
+          href="/"
+          onClick={[Function]}
+        >
+          <span>
+            Outcomes
+          </span>
+        </a>
+      </nav>
+    </div>
+  </div>,
+]
 `;
