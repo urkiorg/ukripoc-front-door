@@ -14,8 +14,9 @@ export const handler: Handler = async (
     const client = new DynamoDB.DocumentClient({
         region: "eu-west-1"
     });
+    console.log("event", event); //
 
-    const env = process.env.env;
+    const env = process.env.env || process.env.ENV;
 
     if (!env || !apiId) {
         context.done(new Error("Missing env"));
@@ -27,7 +28,16 @@ export const handler: Handler = async (
 
     const now = new Date().toISOString();
 
-    let { id, name, description, openDate, closeDate, funders } = event;
+    let {
+        id,
+        name,
+        description,
+        openDate,
+        closeDate,
+        funders,
+        opportunityId,
+        lastPublished
+    } = event;
 
     let { Item } = await client.get({ TableName, Key: { id } }).promise();
 
@@ -40,7 +50,6 @@ export const handler: Handler = async (
         };
     } else {
         console.log("Updated item");
-
         Item.updatedAt = now;
     }
 
@@ -50,11 +59,13 @@ export const handler: Handler = async (
             Item: {
                 ...Item,
                 id,
+                opportunityId,
                 name,
                 description,
                 openDate,
                 closeDate,
-                funders
+                funders,
+                lastPublished
             }
         })
         .promise();

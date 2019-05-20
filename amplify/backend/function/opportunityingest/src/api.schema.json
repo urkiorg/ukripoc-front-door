@@ -16,10 +16,16 @@
         "id": {
             "type": "string"
         },
+        "lastPublished": {
+            "type": "string"
+        },
         "name": {
             "type": "string"
         },
         "openDate": {
+            "type": "string"
+        },
+        "opportunityId": {
             "type": "string"
         }
     },
@@ -27,7 +33,9 @@
         "description",
         "funders",
         "id",
-        "name"
+        "lastPublished",
+        "name",
+        "opportunityId"
     ],
     "type": "object"
 }
