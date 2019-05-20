@@ -6,7 +6,6 @@ import Label from "@govuk-react/label-text";
 import GridRow from "@govuk-react/grid-row";
 import GridCol from "@govuk-react/grid-col";
 import Button from "@govuk-react/button";
-import Link from "@govuk-react/link";
 import { Link as RouterLink } from "@reach/router";
 
 import { GetOpportunityQuery } from "../../API";
