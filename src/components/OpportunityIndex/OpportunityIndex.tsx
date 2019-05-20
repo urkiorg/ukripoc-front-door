@@ -1,8 +1,8 @@
 import React, { FC, HTMLAttributes } from "react";
-import { H2 } from "@govuk-react/heading";
 import P from "@govuk-react/paragraph";
 import { OpportunityListItem } from "../OpportunityListItem";
 import SectionBreak from "@govuk-react/section-break";
+import { Title } from "../../theme";
 // import { ListOpportunitysQuery } from "../../API";
 
 interface Props extends HTMLAttributes<HTMLElement> {
@@ -26,9 +26,9 @@ export const OpportunityIndex: FC<Props> = ({ opportunities }) => {
 
     return (
         <div>
-            <H2>Funding Opportunities</H2>
+            <Title>Funding Opportunities</Title>
             <p>All opportunities ({opportunities.length})</p>
-            <SectionBreak visible />
+            <SectionBreak visible mb={4} />
             {opportunities.map(opp => (
                 <OpportunityListItem key={opp.id} opportunity={opp} />
             ))}

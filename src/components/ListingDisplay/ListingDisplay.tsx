@@ -1,22 +1,38 @@
 import React, { FC, HTMLAttributes } from "react";
-import { H4 } from "@govuk-react/heading";
+import BackLink from "@govuk-react/back-link";
 import P from "@govuk-react/paragraph";
+import HintText from "@govuk-react/hint-text";
 import Label from "@govuk-react/label-text";
 import GridRow from "@govuk-react/grid-row";
 import GridCol from "@govuk-react/grid-col";
-import SectionBreak from "@govuk-react/section-break";
-import { Opportunity } from "../OpportunityIndex/OpportunityIndex";
+import Button from "@govuk-react/button";
 import Link from "@govuk-react/link";
 import { Link as RouterLink } from "@reach/router";
 
+import { GetOpportunityQuery } from "../../API";
+import { ukriGreen, Title } from "../../theme";
 interface Props extends HTMLAttributes<HTMLElement> {
-    opportunity?: Opportunity;
+    opportunityListing?: GetOpportunityQuery;
 }
 
-export const OpportunityListItem: FC<Props> = ({ opportunity: opp }) => {
-    if (!opp) {
-        return null;
+export const ListingDisplay: FC<Props> = ({ opportunityListing }) => {
+    const backlink = (
+        <BackLink as={RouterLink} to="../..">
+            Back to all opportunities
+        </BackLink>
+    );
+
+    if (!opportunityListing || !opportunityListing.getOpportunity) {
+        return (
+            <section>
+                {backlink}
+                <Title>Not found</Title>
+            </section>
+        );
     }
+
+    const opp = opportunityListing.getOpportunity;
+
     const funders = opp.funders || [];
 
     let openDate: Date | undefined;
@@ -30,15 +46,12 @@ export const OpportunityListItem: FC<Props> = ({ opportunity: opp }) => {
     }
 
     return (
-        <section key={opp.id}>
-            <H4>
-                <Link as={RouterLink} to={`opportunity/${opp.id}`}>
-                    {opp.name}
-                </Link>
-            </H4>
-            <P>{opp.description}</P>
+        <section>
+            {backlink}
+            <HintText>Funding opportunity</HintText>
+            <Title>{opp.name}</Title>
             {!!funders.length && (
-                <GridRow mb={closeDate ? 0 : 4}>
+                <GridRow>
                     <GridCol setWidth="30%">
                         <Label>
                             {funders.length === 1 ? "Funder" : "Funders"}:
@@ -69,9 +82,12 @@ export const OpportunityListItem: FC<Props> = ({ opportunity: opp }) => {
                     </GridCol>
                 </GridRow>
             )}
-            <SectionBreak visible mb={4} />
+            <P mb={9}>{opp.description}</P>
+            <a href={`https://www.example.com/apply/${opp.id}`}>
+                <Button buttonColour={ukriGreen}>Start application</Button>
+            </a>
         </section>
     );
 };
 
-export default OpportunityListItem;
+export default ListingDisplay;

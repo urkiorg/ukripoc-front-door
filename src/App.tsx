@@ -5,14 +5,12 @@ import Auth from "@aws-amplify/auth";
 import AWSAppSyncClient, { AUTH_TYPE } from "aws-appsync";
 import { ApolloProvider } from "react-apollo-hooks";
 import Main from "@govuk-react/main";
-
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import { Route } from "./components/Route";
-
-import { NewOpportunityPage } from "./components/NewOpportunityPage";
+import { OpportunityIndexPage } from "./components/OpportunityIndexPage";
+import { ListingDisplayPage } from "./components/ListingDisplayPage";
 
 import config from "./aws-exports";
-import { OpportunityIndexPage } from "./components/OpportunityIndexPage";
 
 const client = new AWSAppSyncClient({
     url: config.aws_appsync_graphqlEndpoint,
@@ -34,14 +32,11 @@ export const App: FC = () => (
         <Main>
             <Router>
                 <Route component={OpportunityIndexPage} path="/" />
-                <Route component={NewOpportunityPage} path="/new" />
+                <Route
+                    component={ListingDisplayPage}
+                    path="opportunity/:listingId"
+                />
             </Router>
-
-            <nav className="primary-nav">
-                <Link to="/new">
-                    <span aria-label="New">New </span>
-                </Link>
-            </nav>
         </Main>
     </ApolloProvider>
 );

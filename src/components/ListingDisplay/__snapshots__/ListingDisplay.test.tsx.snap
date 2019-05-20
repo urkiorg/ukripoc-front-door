@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListingDisplay renders correctly 1`] = `
+<section>
+  <a
+    aria-current="page"
+    className="sc-bdVaJa cQDaMj"
+    href="/"
+    onClick={[Function]}
+  >
+    Back to all opportunities
+  </a>
+  <h1
+    className="sc-iwsKbI ftyRPW sc-dnqmqq bFXjfT"
+    size="XLARGE"
+  >
+    Not found
+  </h1>
+</section>
+`;

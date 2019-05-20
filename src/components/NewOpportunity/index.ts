@@ -1,1 +1,0 @@
-export { NewOpportunity } from "./NewOpportunity";
