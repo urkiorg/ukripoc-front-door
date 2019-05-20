@@ -5,8 +5,8 @@
     "main": "build/index.js",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "parcel build index.ts --target node --out-dir build --bundle-node-modules",
-        "postinstall": "npm run build &&  touch package.json"
+        "build": "parcel build index.ts --target node --out-dir . --bundle-node-modules --no-source-maps",
+        "postinstall": "npm run build"
     },
     "devDependencies": {
         "@types/aws-lambda": "^8.10.25",
