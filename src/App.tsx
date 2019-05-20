@@ -11,6 +11,7 @@ import { OpportunityIndexPage } from "./components/OpportunityIndexPage";
 import { ListingDisplayPage } from "./components/ListingDisplayPage";
 
 import config from "./aws-exports";
+import { UkriHeader } from "./components/UkriHeader";
 
 const client = new AWSAppSyncClient({
     url: config.aws_appsync_graphqlEndpoint,
@@ -29,6 +30,8 @@ Auth.configure(config);
 export const App: FC = () => (
     // See https://github.com/awslabs/aws-mobile-appsync-sdk-js/issues/166 for why we need to coerce to any
     <ApolloProvider client={client as any}>
+        <UkriHeader />
+
         <Main>
             <Router>
                 <Route component={OpportunityIndexPage} path="/" />

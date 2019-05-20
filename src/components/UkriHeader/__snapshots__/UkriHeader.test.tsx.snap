@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UkriHeader renders correctly 1`] = `
+<div
+  className="sc-kgoBCf ljNgMA"
+>
+  <div
+    className="sc-kGXeez fnbpCo"
+  >
+    <div
+      className="sc-kpOJdX jTygax"
+    >
+      <a
+        className="sc-kAzzGY bzlQfF"
+        href="/"
+      >
+        <img
+          alt="UK Research and Innovation"
+          className="sc-chPdSV eADRhK"
+          src="logo.png"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+`;
