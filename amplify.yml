@@ -12,7 +12,7 @@ frontend:
                 - yarn install
         build:
             commands:
-                - yarn build:ci
+                - yarn build
     artifacts:
         baseDirectory: dist
         files:
