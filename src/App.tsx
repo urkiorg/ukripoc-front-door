@@ -12,6 +12,7 @@ import { ListingDisplayPage } from "./components/ListingDisplayPage";
 
 import config from "./aws-exports";
 import { UkriHeader } from "./components/UkriHeader";
+import { NewOpportunityPage } from "./components/NewOpportunityPage";
 
 const client = new AWSAppSyncClient({
     url: config.aws_appsync_graphqlEndpoint,
@@ -35,6 +36,7 @@ export const App: FC = () => (
         <Main>
             <Router>
                 <Route component={OpportunityIndexPage} path="/" />
+                <Route component={NewOpportunityPage} path="/new" />
                 <Route
                     component={ListingDisplayPage}
                     path="opportunity/:listingId"

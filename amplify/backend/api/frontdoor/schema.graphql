@@ -6,4 +6,3 @@ type Opportunity @model {
     closeDate: String
     funders: [String]
 }
-#
