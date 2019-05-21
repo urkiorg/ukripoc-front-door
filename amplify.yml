@@ -1,10 +1,12 @@
 version: 0.1
 backend:
     phases:
-        build:
+        preBuild:
             commands:
                 - npm install -g @aws-amplify/cli@latest
-                - npm run init-lambda
+        build:
+            commands:
+                - env
                 - amplifyPush --simple
 frontend:
     phases:
