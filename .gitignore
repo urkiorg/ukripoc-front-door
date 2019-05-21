@@ -34,3 +34,5 @@ aws-exports.js
 awsconfiguration.json
 
 .cache
+amplify/backend/function/opportunityingest/src/amplify-meta.json
+amplify/backend/function/opportunityingest/src/package-lock.json

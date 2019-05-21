@@ -1,7 +1,7 @@
 import { Handler } from "aws-lambda";
 import { DynamoDB } from "aws-sdk";
 
-import { api } from "../../../amplify-meta.json";
+import { api } from "./amplify-meta.json";
 
 export const getDBTableName = (env: string, apiId: string, type: string) =>
     `${type}-${apiId}-${env}`;
