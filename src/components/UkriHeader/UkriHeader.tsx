@@ -10,14 +10,13 @@ import styled from "styled-components";
 import { Link } from "@reach/router";
 
 export const routes = {
-    Home: "/",
-    Opportunities: "opportunity",
-    Schedule: "/",
-    Reporting: "/",
-    "User & Organisation": "/",
-    "Award setup": "/",
-    Award: "/",
-    Outcomes: "/"
+    Funding: "/",
+    Research: "/",
+    Innovation: "/",
+    Skills: "/",
+    News: "/",
+    "Public engagement": "/",
+    "About us": "/"
 };
 
 const LogoAnchor = styled("a")`
