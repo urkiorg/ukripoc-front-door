@@ -27,7 +27,6 @@ const LogoAnchor = styled("a")`
 const Logo = styled.img`
     width: 122px;
     height: 32px;
-    margin-top: 24px;
 `;
 const TopBannerWrapper = styled("div")(({ color }) => ({
     display: "flex",
@@ -142,7 +141,7 @@ export const UkriHeader: FC = ({ ...props }) => (
                 <LogoSearchWrapper>
                     <LogoAnchor href={"/"}>
                         <Logo
-                            src={require("./logo.png")}
+                            src={require("./logo.svg")}
                             alt="UK Research and Innovation"
                         />
                     </LogoAnchor>

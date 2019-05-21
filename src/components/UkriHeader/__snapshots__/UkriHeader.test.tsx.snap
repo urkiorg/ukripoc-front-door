@@ -17,8 +17,17 @@ Array [
         >
           <img
             alt="UK Research and Innovation"
-            className="sc-bwzfXH ibrCQJ"
-            src="logo.png"
+            className="sc-bwzfXH dYfCK"
+            src={
+              Object {
+                "ReactComponent": Object {
+                  "$$typeof": Symbol(react.forward_ref),
+                  "render": [Function],
+                },
+                "__esModule": true,
+                "default": "logo.svg",
+              }
+            }
           />
         </a>
         <span
