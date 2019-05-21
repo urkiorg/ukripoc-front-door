@@ -10,11 +10,5 @@ exports[`ListingDisplay renders correctly 1`] = `
   >
     Back to all opportunities
   </a>
-  <h1
-    className="sc-iwsKbI ftyRPW sc-dnqmqq bFXjfT"
-    size="XLARGE"
-  >
-    Not found
-  </h1>
 </section>
 `;

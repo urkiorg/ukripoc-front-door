@@ -45,81 +45,72 @@ Array [
       >
         <a
           aria-current="page"
-          className="sc-htoDjs WcQyC"
+          className="sc-htoDjs NKqyq"
           href="/"
           onClick={[Function]}
         >
           <span>
-            Home
-          </span>
-        </a>
-        <a
-          className="sc-htoDjs WcQyC"
-          href="/opportunity"
-          onClick={[Function]}
-        >
-          <span>
-            Opportunities
+            Funding
           </span>
         </a>
         <a
           aria-current="page"
-          className="sc-htoDjs WcQyC"
+          className="sc-htoDjs NKqyq"
           href="/"
           onClick={[Function]}
         >
           <span>
-            Schedule
+            Research
           </span>
         </a>
         <a
           aria-current="page"
-          className="sc-htoDjs WcQyC"
+          className="sc-htoDjs NKqyq"
           href="/"
           onClick={[Function]}
         >
           <span>
-            Reporting
+            Innovation
           </span>
         </a>
         <a
           aria-current="page"
-          className="sc-htoDjs WcQyC"
+          className="sc-htoDjs NKqyq"
           href="/"
           onClick={[Function]}
         >
           <span>
-            User & Organisation
+            Skills
           </span>
         </a>
         <a
           aria-current="page"
-          className="sc-htoDjs WcQyC"
+          className="sc-htoDjs NKqyq"
           href="/"
           onClick={[Function]}
         >
           <span>
-            Award setup
+            News
           </span>
         </a>
         <a
           aria-current="page"
-          className="sc-htoDjs WcQyC"
+          className="sc-htoDjs NKqyq"
           href="/"
           onClick={[Function]}
         >
           <span>
-            Award
+            Public engagement
           </span>
         </a>
         <a
           aria-current="page"
-          className="sc-htoDjs WcQyC"
+          className="sc-htoDjs NKqyq"
           href="/"
           onClick={[Function]}
         >
           <span>
-            Outcomes
+            About us
           </span>
         </a>
       </nav>

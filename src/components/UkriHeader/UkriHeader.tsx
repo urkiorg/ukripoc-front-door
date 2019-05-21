@@ -95,6 +95,7 @@ const MainNav = styled("nav")({
 
 const MainNavItem = styled(Link)`
     display: flex;
+    font-family: ${NTA_LIGHT};
     flex-flow: row wrap;
     justify-content: middle;
     align-items: center;

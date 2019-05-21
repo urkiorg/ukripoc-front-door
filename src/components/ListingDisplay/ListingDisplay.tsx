@@ -22,12 +22,7 @@ export const ListingDisplay: FC<Props> = ({ opportunityListing }) => {
     );
 
     if (!opportunityListing || !opportunityListing.getOpportunity) {
-        return (
-            <section>
-                {backlink}
-                <Title>Not found</Title>
-            </section>
-        );
+        return <section>{backlink}</section>;
     }
 
     const opp = opportunityListing.getOpportunity;
