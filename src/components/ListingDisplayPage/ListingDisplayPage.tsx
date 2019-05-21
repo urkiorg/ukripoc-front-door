@@ -27,11 +27,7 @@ export const ListingDisplayPage: FC<Props> = ({ listingId, ...props }) => {
     if (error) {
         return <p>Error</p>;
     }
-    return (
-        <LoadingBox loading={loading && !data}>
-            <ListingDisplay opportunityListing={data} />
-        </LoadingBox>
-    );
+    return <ListingDisplay opportunityListing={data} loading={loading} />;
 };
 
 export default ListingDisplayPage;

@@ -13,16 +13,17 @@ import { GetOpportunityQuery } from "../../API";
 import { ukriGreen, Title } from "../../theme";
 interface Props extends HTMLAttributes<HTMLElement> {
     opportunityListing?: GetOpportunityQuery;
+    loading?: boolean;
 }
 
-export const ListingDisplay: FC<Props> = ({ opportunityListing }) => {
+export const ListingDisplay: FC<Props> = ({ opportunityListing, loading }) => {
     const backlink = (
         <BackLink as={RouterLink} to="../..">
             Back to all opportunities
         </BackLink>
     );
 
-    if (!opportunityListing || !opportunityListing.getOpportunity) {
+    if (loading) {
         return (
             <section>
                 {backlink}
@@ -37,7 +38,7 @@ export const ListingDisplay: FC<Props> = ({ opportunityListing }) => {
         );
     }
 
-    if (!opportunityListing.getOpportunity) {
+    if (!opportunityListing || !opportunityListing.getOpportunity) {
         return (
             <section>
                 {backlink}
