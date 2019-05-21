@@ -29,7 +29,9 @@
         "storybook": "start-storybook -p 9009 -s public",
         "build-storybook": "build-storybook -s public -o dist/storybook",
         "build:ci": "yarn build-storybook && yarn build && mv build dist/preview && cp src/index.html dist/",
-        "build-schema": "typescript-json-schema ./amplify/backend/function/opportunityingest/src/api.d.ts OpportunityUpdateEvent -o ./amplify/backend/function/opportunityingest/src/api.schema.json --required --strictNullChecks"
+        "build-schema": "typescript-json-schema ./amplify/backend/function/opportunityingest/src/api.d.ts OpportunityUpdateEvent -o ./amplify/backend/function/opportunityingest/src/api.schema.json --required --strictNullChecks",
+        "build-lambda": "cd ./amplify/backend/function/opportunityingest/src/ && npm run build",
+        "init-lambda": "cd ./amplify/backend/function/opportunityingest/src/ && npm install && npm run build"
     },
     "eslintConfig": {
         "extends": "react-app"
