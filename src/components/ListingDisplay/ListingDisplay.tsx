@@ -7,6 +7,7 @@ import GridRow from "@govuk-react/grid-row";
 import GridCol from "@govuk-react/grid-col";
 import Button from "@govuk-react/button";
 import { Link as RouterLink } from "@reach/router";
+import Skeleton from "react-loading-skeleton";
 
 import { GetOpportunityQuery } from "../../API";
 import { ukriGreen, Title } from "../../theme";
@@ -22,7 +23,27 @@ export const ListingDisplay: FC<Props> = ({ opportunityListing }) => {
     );
 
     if (!opportunityListing || !opportunityListing.getOpportunity) {
-        return <section>{backlink}</section>;
+        return (
+            <section>
+                {backlink}
+                <HintText>
+                    <Skeleton height="25px" width="300px" />
+                </HintText>
+                <Title>
+                    <Skeleton height="50px" width="500px" />
+                </Title>
+                <Skeleton count={4} />
+            </section>
+        );
+    }
+
+    if (!opportunityListing.getOpportunity) {
+        return (
+            <section>
+                {backlink}
+                <Title>Not found</Title>
+            </section>
+        );
     }
 
     const opp = opportunityListing.getOpportunity;

@@ -10,5 +10,17 @@ exports[`ListingDisplay renders correctly 1`] = `
   >
     Back to all opportunities
   </a>
+  <span>
+    <span
+      className="css-19bon8n"
+      style={
+        Object {
+          "animation": "animation-16jpnkj 1.2s ease-in-out infinite",
+        }
+      }
+    >
+      ‌
+    </span>
+  </span>
 </section>
 `;
