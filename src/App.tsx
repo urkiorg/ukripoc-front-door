@@ -13,7 +13,6 @@ import { ListingDisplayPage } from "./components/ListingDisplayPage";
 import config from "./aws-exports";
 import { UkriHeader } from "./components/UkriHeader";
 import { UkriFooter } from "./components/UkriFooter";
-import { NewOpportunityPage } from "./components/NewOpportunityPage";
 
 import "./assets/fonts/stylesheet.css";
 
@@ -39,7 +38,7 @@ export const App: FC = () => (
         <Main>
             <Router>
                 <Route component={OpportunityIndexPage} path="/" />
-                <Route component={NewOpportunityPage} path="/new" />
+                {/* <Route component={NewOpportunityPage} path="/new" /> */}
                 <Route
                     component={ListingDisplayPage}
                     path="opportunity/:listingId"
