@@ -67,7 +67,121 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "ukripoc-front-door-fddev-20190514135627-deployment",
-					"S3Key": "amplify-builds/opportunityingest-1558603608-latest-build.zip"
+					"S3Key": "amplify-builds/opportunityingest-1558606818-latest-build.zip"
+				}
+			}
+		},
+		"SqsQueue": {
+			"Type": "AWS::SQS::Queue",
+			"Properties": {
+				"QueueName": {
+					"Fn::If": [
+						"ShouldNotCreateEnvResources",
+						"ukripocfrontdooropportunityingest",
+						{
+							"Fn::Join": [
+								"",
+								[
+									"ukripocfrontdooropportunityingest",
+									"-",
+									{
+										"Ref": "env"
+									}
+								]
+							]
+						}
+					]
+				}
+			}
+		},
+		"SqsQueuePolicy": {
+			"Type": "AWS::SQS::QueuePolicy",
+			"Properties": {
+				"PolicyDocument": {
+					"Version": "2012-10-17",
+					"Statement": [
+						{
+							"Sid": "1",
+							"Effect": "Allow",
+							"Principal": "*",
+							"Action": [
+								"SQS:SendMessage"
+							],
+							"Resource": {
+								"Fn::GetAtt": [
+									"SqsQueue",
+									"Arn"
+								]
+							},
+							"Condition": {
+								"ArnEquals": {
+									"aws:SourceArn": {
+										"Fn::Sub": [
+											"arn:aws:sns:${region}:${account}:OpportunityListingUpdate",
+											{
+												"region": {
+													"Ref": "AWS::Region"
+												},
+												"account": {
+													"Ref": "AWS::AccountId"
+												}
+											}
+										]
+									}
+								}
+							}
+						}
+					]
+				},
+				"Queues": [
+					{
+						"Ref": "SqsQueue"
+					}
+				]
+			}
+		},
+		"SnsSubscription": {
+			"Type": "AWS::SNS::Subscription",
+			"Properties": {
+				"Protocol": "sqs",
+				"Endpoint": {
+					"Fn::GetAtt": [
+						"SqsQueue",
+						"Arn"
+					]
+				},
+				"TopicArn": {
+					"Fn::Sub": [
+						"arn:aws:sns:${region}:${account}:OpportunityListingUpdate",
+						{
+							"region": {
+								"Ref": "AWS::Region"
+							},
+							"account": {
+								"Ref": "AWS::AccountId"
+							}
+						}
+					]
+				}
+			}
+		},
+		"EventSourceMapping": {
+			"DependsOn": [
+				"lambdaexecutionpolicy"
+			],
+			"Type": "AWS::Lambda::EventSourceMapping",
+			"Properties": {
+				"EventSourceArn": {
+					"Fn::GetAtt": [
+						"SqsQueue",
+						"Arn"
+					]
+				},
+				"FunctionName": {
+					"Fn::GetAtt": [
+						"LambdaFunction",
+						"Arn"
+					]
 				}
 			}
 		},
@@ -171,6 +285,15 @@
 									}
 								]
 							}
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"sqs:ReceiveMessage",
+								"sqs:DeleteMessage",
+								"sqs:GetQueueAttributes"
+							],
+							"Resource": "*"
 						}
 					]
 				}
