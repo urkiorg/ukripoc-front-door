@@ -1,30 +1,25 @@
-import { Handler } from "aws-lambda";
+import { Handler, SQSEvent } from "aws-lambda";
 import { DynamoDB } from "aws-sdk";
+import console = require("console");
 
 export const getDBTableName = (env: string, apiId: string, type: string) =>
     `${type}-${apiId}-${env}`;
 
-export const handler: Handler = async (
-    event: OpportunityUpdateEvent,
-    context
+const checkListing = (listing: OpportunityUpdateEvent) => {
+    const required = ["id", "opportunityId", "name", "description"];
+    return !required.find(field => !(field in listing));
+};
+
+const addRecord = async (
+    listing: OpportunityUpdateEvent,
+    TableName: string,
+    client: DynamoDB.DocumentClient,
+    now: string
 ) => {
-    const apiId = process.env.AppSyncApiId;
-    const client = new DynamoDB.DocumentClient({
-        region: "eu-west-1"
-    });
-    console.log("event", event);
-
-    const env = process.env.ENV;
-
-    if (!env || !apiId) {
-        context.done(new Error("Missing env"));
+    if (!checkListing(listing)) {
+        console.log("Bad listing", listing);
         return;
     }
-
-    const TableName = getDBTableName(env, apiId, "Opportunity");
-    console.log({ TableName });
-
-    const now = new Date().toISOString();
 
     let {
         id,
@@ -35,7 +30,7 @@ export const handler: Handler = async (
         funders,
         opportunityId,
         lastPublished
-    } = event;
+    } = listing;
 
     let { Item } = await client.get({ TableName, Key: { id } }).promise();
 
@@ -51,7 +46,7 @@ export const handler: Handler = async (
         Item.updatedAt = now;
     }
 
-    await client
+    return client
         .put({
             TableName,
             Item: {
@@ -67,6 +62,44 @@ export const handler: Handler = async (
             }
         })
         .promise();
+};
+
+export const handler: Handler = async (event: SQSEvent, context) => {
+    const apiId = process.env.AppSyncApiId;
+    const client = new DynamoDB.DocumentClient({
+        region: "eu-west-1"
+    });
+    console.log("event", event);
+    const env = process.env.ENV;
+
+    if (!env || !apiId) {
+        context.done(new Error("Missing env"));
+        return;
+    }
+
+    const TableName = getDBTableName(env, apiId, "Opportunity");
+
+    const now = new Date().toISOString();
+
+    const { Records } = event;
+
+    const listings = Records.map(r => {
+        try {
+            return JSON.parse(r.body) as OpportunityUpdateEvent;
+        } catch (e) {
+            console.log("Error", e);
+        }
+        return undefined;
+    }).filter(Boolean);
+
+    await Promise.all(
+        listings.map(async listing => {
+            if (!listing) {
+                return;
+            }
+            return addRecord(listing, TableName, client, now);
+        })
+    );
 
     context.done(undefined, "Success");
 };

@@ -1,11 +1,15 @@
 {
-    "$schema": "./api.schema.json",
-    "id": "dummyuuid2",
-    "opportunityId": "dummyOpportunityuuid",
-    "name": "Dummy event opportunity 3",
-    "description": "Amazon DynamoDB is a fully managed proprietary NoSQL database service that supports key-value and document data structures and is offered by Amazon.com as part of the Amazon Web Services portfolio. DynamoDB exposes a similar data model to and derives its name from Dynamo, but has a different underlying implementation.",
-    "funders": ["AHRC", "Innovate UK"],
-    "openDate": "2019-05-16T13:25:03.805Z",
-    "closeDate": "2019-05-16T13:25:03.805Z",
-    "lastPublished": "2019-05-16T13:25:03.805Z"
+    "Records": [
+        {
+            "messageId": "6a9c0bf9-d78e-48dc-9716-96c1eb9a775f",
+            "receiptHandle": "AQEBWWerCL/BcDGp9fppERE6cGbeNw17fzLKpwwdMIAYxQC4AnEbQNCGBevvmGScL3sJm7GPJQGIdcEQAe3iS07EqKXTuIl3OZ2MDIvEk7C6/fTymbdLEKCRgqikrb1zUPXysElEHhmC2RG4AvG0fToYxxaELT0zvtZeZvOYjRAPHNeZmtazc6mMMiYcoMqOEakuUz008ERasKEIP0o7T0nDTyPf+VIMg3GnhiYjG4mk7E5mK1U4pfi2XjumHNr+8F8vtgdJn9zndvqIaEU2Eh3WB1Ce3ksyzlnW2TGerZU6VLB8SS7+yTQ5Nt7KGyYIB/flWxcmmmCPsFjJw0LvaVz4bAVER7bZaLEBXo6lcihB4AN8/zKBdj5syQF6wXiJ3msdDbbiN7q0BC/rNnCrZfzF6DtiZHpayHicr27k9L0MKf0=",
+            "body": "{\"$schema\": \"./api.schema.json\",        \"id\": \"dummyuuid2\",        \"opportunityId\": \"dummyOpportunityuuid\",        \"name\": \"Dummy event opportunity 3\",        \"description\": \"Amazon DynamoDB is a fully managed proprietary NoSQL database service that supports key-value and document data structures and is offered by Amazon.com as part of the Amazon Web Services portfolio. DynamoDB exposes a similar data model to and derives its name from Dynamo, but has a different underlying implementation.\",        \"funders\": [\"AHRC\", \"Innovate UK\"],        \"openDate\": \"2019-05-16T13:25:03.805Z\", \"closeDate\": \"2019-05-16T13:25:03.805Z\",        \"lastPublished\": \"2019-05-16T13:25:03.805Z\"}",
+            "attributes": [],
+            "messageAttributes": {},
+            "md5OfBody": "acbd18db4cc2f85cedef654fccc4a4d8",
+            "eventSource": "aws:sqs",
+            "eventSourceARN": "arn:aws:sqs:eu-west-1:475991803334:ukripocfrontdooropportunityingest-fddev",
+            "awsRegion": "eu-west-1"
+        }
+    ]
 }
