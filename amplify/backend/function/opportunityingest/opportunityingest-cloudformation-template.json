@@ -4,6 +4,10 @@
 	"Parameters": {
 		"env": {
 			"Type": "String"
+		},
+		"apifrontdoorGraphQLAPIIdOutput": {
+			"Type": "String",
+			"Description": "The id of the AppSync API associated with this project."
 		}
 	},
 	"Conditions": {
@@ -47,6 +51,9 @@
 					"Variables": {
 						"ENV": {
 							"Ref": "env"
+						},
+						"AppSyncApiId": {
+							"Ref": "apifrontdoorGraphQLAPIIdOutput"
 						}
 					}
 				},
@@ -59,8 +66,8 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "ukripoc-front-door-devconsole-20190520120037-deployment",
-					"S3Key": "amplify-builds/opportunityingest-1558448214-latest-build.zip"
+					"S3Bucket": "ukripoc-front-door-fddev-20190514135627-deployment",
+					"S3Key": "amplify-builds/opportunityingest-1558603608-latest-build.zip"
 				}
 			}
 		},

@@ -1,8 +1,6 @@
 import { Handler } from "aws-lambda";
 import { DynamoDB } from "aws-sdk";
 
-import { api } from "./amplify-meta.json";
-
 export const getDBTableName = (env: string, apiId: string, type: string) =>
     `${type}-${apiId}-${env}`;
 
@@ -10,13 +8,13 @@ export const handler: Handler = async (
     event: OpportunityUpdateEvent,
     context
 ) => {
-    const apiId = api.frontdoor.output.GraphQLAPIIdOutput;
+    const apiId = process.env.AppSyncApiId;
     const client = new DynamoDB.DocumentClient({
         region: "eu-west-1"
     });
-    console.log("event", event); //
+    console.log("event", event);
 
-    const env = process.env.env || process.env.ENV;
+    const env = process.env.ENV;
 
     if (!env || !apiId) {
         context.done(new Error("Missing env"));
