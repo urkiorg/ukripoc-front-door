@@ -19,7 +19,8 @@
         "react-loading-skeleton": "^1.1.1",
         "react-markdown": "^4.0.8",
         "react-scripts": "3.0.0",
-        "styled-components": "^4.2.0"
+        "styled-components": "^4.2.0",
+        "ukripoc-components": "github:urkiorg/ukripoc-components"
     },
     "scripts": {
         "start": "react-scripts start",

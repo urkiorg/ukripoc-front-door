@@ -1380,6 +1380,13 @@
   dependencies:
     govuk-colours "^1.0.3"
 
+"@govuk-react/constants@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@govuk-react/constants/-/constants-0.7.1.tgz#b57d8ae31835d2cbc201c2e54f1e696e09fa186d"
+  integrity sha512-pFmdA4qyFp9eI5fGFJbHZYUSq0wsUuSV5jQSHJn48aNe5hq7IEGlTx8HAtZpkVIadPDfcOidrll5UzFmY8aATA==
+  dependencies:
+    govuk-colours "^1.0.3"
+
 "@govuk-react/date-field@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@govuk-react/date-field/-/date-field-0.7.0.tgz#35ef66ab0a6cff2e818eb3d5aa49c8dc6eef4e73"
@@ -13346,6 +13353,16 @@ uglify-js@^3.1.4:
   dependencies:
     commander "~2.20.0"
     source-map "~0.6.1"
+
+"ukripoc-components@github:urkiorg/ukripoc-components":
+  version "1.0.1"
+  resolved "https://codeload.github.com/urkiorg/ukripoc-components/tar.gz/3024a649960fb10f3d71ec2608134a8e7807241b"
+  dependencies:
+    "@govuk-react/constants" "^0.7.1"
+    "@reach/router" "^1.2.1"
+    react "^16.8.6"
+    react-dom "^16.8.6"
+    styled-components "^4.2.0"
 
 unherit@^1.0.4:
   version "1.1.2"

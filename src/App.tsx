@@ -11,8 +11,8 @@ import { OpportunityIndexPage } from "./components/OpportunityIndexPage";
 import { ListingDisplayPage } from "./components/ListingDisplayPage";
 
 import config from "./aws-exports";
-import { UkriHeader } from "./components/UkriHeader";
-import { UkriFooter } from "./components/UkriFooter";
+import { UkriHeader } from "ukripoc-components";
+import { UkriFooter } from "ukripoc-components";
 
 import "./assets/fonts/stylesheet.css";
 
@@ -25,6 +25,16 @@ const client = new AWSAppSyncClient({
     }
 });
 
+const routes = {
+    Funding: "/",
+    Research: "/",
+    Innovation: "/",
+    Skills: "/",
+    News: "/",
+    "Public engagement": "/",
+    "About us": "/"
+};
+
 Amplify.configure(config);
 
 // retrieve temporary AWS credentials and sign requests
@@ -33,7 +43,7 @@ Auth.configure(config);
 export const App: FC = () => (
     // See https://github.com/awslabs/aws-mobile-appsync-sdk-js/issues/166 for why we need to coerce to any
     <ApolloProvider client={client as any}>
-        <UkriHeader />
+        <UkriHeader routes={routes} />
 
         <Main>
             <Router>
