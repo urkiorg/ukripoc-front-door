@@ -1,4 +1,8 @@
 interface OpportunityUpdateEvent {
+    Message: OpportunityUpdateMessage;
+}
+
+interface OpportunityUpdateMessage {
     id: string;
     opportunityId: string;
     name: string;

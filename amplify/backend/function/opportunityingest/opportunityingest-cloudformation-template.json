@@ -66,8 +66,8 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "ukripoc-front-door-fddev-20190514135627-deployment",
-					"S3Key": "amplify-builds/opportunityingest-1559639009-latest-build.zip"
+					"S3Bucket": "ukripoc-front-door-devconsole-20190520120037-deployment",
+					"S3Key": "amplify-builds/opportunityingest-1559729191-latest-build.zip"
 				}
 			}
 		},
@@ -117,7 +117,7 @@
 								"ArnEquals": {
 									"aws:SourceArn": {
 										"Fn::Sub": [
-											"arn:aws:sns:${region}:${account}:OpportunityListingUpdate",
+											"arn:aws:sns:${region}:${account}:OpportunityListingUpdate-develop",
 											{
 												"region": {
 													"Ref": "AWS::Region"

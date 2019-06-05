@@ -5,13 +5,13 @@ import console = require("console");
 export const getDBTableName = (env: string, apiId: string, type: string) =>
     `${type}-${apiId}-${env}`;
 
-const checkListing = (listing: OpportunityUpdateEvent) => {
+const checkListing = (listing: OpportunityUpdateMessage) => {
     const required = ["id", "opportunityId", "name", "description"];
     return !required.find(field => !(field in listing));
 };
 
 const addRecord = async (
-    listing: OpportunityUpdateEvent,
+    listing: OpportunityUpdateMessage,
     TableName: string,
     client: DynamoDB.DocumentClient,
     now: string
@@ -97,7 +97,16 @@ export const handler: Handler = async (event: SQSEvent, context) => {
             if (!listing) {
                 return;
             }
-            return addRecord(listing, TableName, client, now);
+            try {
+                const message =
+                    typeof listing.Message === "string"
+                        ? JSON.parse(listing.Message)
+                        : listing.Message;
+                return addRecord(message, TableName, client, now);
+            } catch (err) {
+                console.warn("Message parse error:", { err }, listing.Message);
+                return;
+            }
         })
     );
 
