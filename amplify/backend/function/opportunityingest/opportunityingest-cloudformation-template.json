@@ -1,323 +1,295 @@
 {
-	"AWSTemplateFormatVersion": "2010-09-09",
-	"Description": "Lambda resource stack creation using Amplify CLI",
-	"Parameters": {
-		"env": {
-			"Type": "String"
-		},
-		"apifrontdoorGraphQLAPIIdOutput": {
-			"Type": "String",
-			"Description": "The id of the AppSync API associated with this project."
-		}
-	},
-	"Conditions": {
-		"ShouldNotCreateEnvResources": {
-			"Fn::Equals": [
-				{
-					"Ref": "env"
-				},
-				"NONE"
-			]
-		}
-	},
-	"Resources": {
-		"LambdaFunction": {
-			"Type": "AWS::Lambda::Function",
-			"Metadata": {
-				"aws:asset:path": "./src",
-				"aws:asset:property": "Code"
-			},
-			"Properties": {
-				"Handler": "index.handler",
-				"FunctionName": {
-					"Fn::If": [
-						"ShouldNotCreateEnvResources",
-						"opportunityingest",
-						{
-							"Fn::Join": [
-								"",
-								[
-									"opportunityingest",
-									"-",
-									{
-										"Ref": "env"
-									}
-								]
-							]
-						}
-					]
-				},
-				"Environment": {
-					"Variables": {
-						"ENV": {
-							"Ref": "env"
-						},
-						"AppSyncApiId": {
-							"Ref": "apifrontdoorGraphQLAPIIdOutput"
-						}
-					}
-				},
-				"Role": {
-					"Fn::GetAtt": [
-						"LambdaExecutionRole",
-						"Arn"
-					]
-				},
-				"Runtime": "nodejs8.10",
-				"Timeout": "25",
-				"Code": {
-					"S3Bucket": "ukripoc-front-door-devconsole-20190520120037-deployment",
-					"S3Key": "amplify-builds/opportunityingest-1559729191-latest-build.zip"
-				}
-			}
-		},
-		"SqsQueue": {
-			"Type": "AWS::SQS::Queue",
-			"Properties": {
-				"QueueName": {
-					"Fn::If": [
-						"ShouldNotCreateEnvResources",
-						"ukripocfrontdooropportunityingest",
-						{
-							"Fn::Join": [
-								"",
-								[
-									"ukripocfrontdooropportunityingest",
-									"-",
-									{
-										"Ref": "env"
-									}
-								]
-							]
-						}
-					]
-				}
-			}
-		},
-		"SqsQueuePolicy": {
-			"Type": "AWS::SQS::QueuePolicy",
-			"Properties": {
-				"PolicyDocument": {
-					"Version": "2012-10-17",
-					"Statement": [
-						{
-							"Sid": "1",
-							"Effect": "Allow",
-							"Principal": "*",
-							"Action": [
-								"SQS:SendMessage"
-							],
-							"Resource": {
-								"Fn::GetAtt": [
-									"SqsQueue",
-									"Arn"
-								]
-							},
-							"Condition": {
-								"ArnEquals": {
-									"aws:SourceArn": {
-										"Fn::Sub": [
-											"arn:aws:sns:${region}:${account}:OpportunityListingUpdate-develop",
-											{
-												"region": {
-													"Ref": "AWS::Region"
-												},
-												"account": {
-													"Ref": "AWS::AccountId"
-												}
-											}
-										]
-									}
-								}
-							}
-						}
-					]
-				},
-				"Queues": [
-					{
-						"Ref": "SqsQueue"
-					}
-				]
-			}
-		},
-		"SnsSubscription": {
-			"Type": "AWS::SNS::Subscription",
-			"Properties": {
-				"Protocol": "sqs",
-				"Endpoint": {
-					"Fn::GetAtt": [
-						"SqsQueue",
-						"Arn"
-					]
-				},
-				"TopicArn": {
-					"Fn::Sub": [
-						"arn:aws:sns:${region}:${account}:OpportunityListingUpdate-develop",
-						{
-							"region": {
-								"Ref": "AWS::Region"
-							},
-							"account": {
-								"Ref": "AWS::AccountId"
-							}
-						}
-					]
-				}
-			}
-		},
-		"EventSourceMapping": {
-			"DependsOn": [
-				"lambdaexecutionpolicy"
-			],
-			"Type": "AWS::Lambda::EventSourceMapping",
-			"Properties": {
-				"EventSourceArn": {
-					"Fn::GetAtt": [
-						"SqsQueue",
-						"Arn"
-					]
-				},
-				"FunctionName": {
-					"Fn::GetAtt": [
-						"LambdaFunction",
-						"Arn"
-					]
-				}
-			}
-		},
-		"LambdaExecutionRole": {
-			"Type": "AWS::IAM::Role",
-			"Properties": {
-				"RoleName": {
-					"Fn::If": [
-						"ShouldNotCreateEnvResources",
-						"ukripocfrontdoorLambdaRolec1edfa98",
-						{
-							"Fn::Join": [
-								"",
-								[
-									"ukripocfrontdoorLambdaRolec1edfa98",
-									"-",
-									{
-										"Ref": "env"
-									}
-								]
-							]
-						}
-					]
-				},
-				"AssumeRolePolicyDocument": {
-					"Version": "2012-10-17",
-					"Statement": [
-						{
-							"Effect": "Allow",
-							"Principal": {
-								"Service": [
-									"lambda.amazonaws.com"
-								]
-							},
-							"Action": [
-								"sts:AssumeRole"
-							]
-						}
-					]
-				}
-			}
-		},
-		"lambdaexecutionpolicy": {
-			"DependsOn": [
-				"LambdaExecutionRole"
-			],
-			"Type": "AWS::IAM::Policy",
-			"Properties": {
-				"PolicyName": "lambda-execution-policy",
-				"Roles": [
-					{
-						"Ref": "LambdaExecutionRole"
-					}
-				],
-				"PolicyDocument": {
-					"Version": "2012-10-17",
-					"Statement": [
-						{
-							"Effect": "Allow",
-							"Action": [
-								"logs:CreateLogGroup",
-								"logs:CreateLogStream",
-								"logs:PutLogEvents"
-							],
-							"Resource": {
-								"Fn::Sub": [
-									"arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
-									{
-										"region": {
-											"Ref": "AWS::Region"
-										},
-										"account": {
-											"Ref": "AWS::AccountId"
-										},
-										"lambda": {
-											"Ref": "LambdaFunction"
-										}
-									}
-								]
-							}
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"dynamodb:GetItem",
-								"dynamodb:PutItem",
-								"dynamodb:UpdateItem",
-								"dynamodb:DeleteItem",
-								"dynamodb:Query"
-							],
-							"Resource": {
-								"Fn::Sub": [
-									"arn:aws:dynamodb:${region}:${account}:*",
-									{
-										"region": {
-											"Ref": "AWS::Region"
-										},
-										"account": {
-											"Ref": "AWS::AccountId"
-										}
-									}
-								]
-							}
-						},
-						{
-							"Effect": "Allow",
-							"Action": [
-								"sqs:ReceiveMessage",
-								"sqs:DeleteMessage",
-								"sqs:GetQueueAttributes"
-							],
-							"Resource": "*"
-						}
-					]
-				}
-			}
-		}
-	},
-	"Outputs": {
-		"Name": {
-			"Value": {
-				"Ref": "LambdaFunction"
-			}
-		},
-		"Arn": {
-			"Value": {
-				"Fn::GetAtt": [
-					"LambdaFunction",
-					"Arn"
-				]
-			}
-		},
-		"Region": {
-			"Value": {
-				"Ref": "AWS::Region"
-			}
-		}
-	}
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Lambda resource stack creation using Amplify CLI",
+    "Parameters": {
+        "env": {
+            "Type": "String"
+        },
+        "apifrontdoorGraphQLAPIIdOutput": {
+            "Type": "String",
+            "Description": "The id of the AppSync API associated with this project."
+        }
+    },
+    "Conditions": {
+        "ShouldNotCreateEnvResources": {
+            "Fn::Equals": [
+                {
+                    "Ref": "env"
+                },
+                "NONE"
+            ]
+        }
+    },
+    "Resources": {
+        "LambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Metadata": {
+                "aws:asset:path": "./src",
+                "aws:asset:property": "Code"
+            },
+            "Properties": {
+                "Handler": "index.handler",
+                "FunctionName": {
+                    "Fn::If": [
+                        "ShouldNotCreateEnvResources",
+                        "opportunityingest",
+                        {
+                            "Fn::Join": [
+                                "",
+                                [
+                                    "opportunityingest",
+                                    "-",
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "Environment": {
+                    "Variables": {
+                        "ENV": {
+                            "Ref": "env"
+                        },
+                        "AppSyncApiId": {
+                            "Ref": "apifrontdoorGraphQLAPIIdOutput"
+                        }
+                    }
+                },
+                "Role": {
+                    "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+                },
+                "Runtime": "nodejs8.10",
+                "Timeout": "25",
+                "Code": {
+                    "S3Bucket": "ukripoc-front-door-devconsole-20190520120037-deployment",
+                    "S3Key": "amplify-builds/opportunityingest-1559731778-latest-build.zip"
+                }
+            }
+        },
+        "SqsQueue": {
+            "Type": "AWS::SQS::Queue",
+            "Properties": {
+                "QueueName": {
+                    "Fn::If": [
+                        "ShouldNotCreateEnvResources",
+                        "ukripocfrontdooropportunityingest",
+                        {
+                            "Fn::Join": [
+                                "",
+                                [
+                                    "ukripocfrontdooropportunityingest",
+                                    "-",
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "SqsQueuePolicy": {
+            "Type": "AWS::SQS::QueuePolicy",
+            "Properties": {
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "1",
+                            "Effect": "Allow",
+                            "Principal": "*",
+                            "Action": ["SQS:SendMessage"],
+                            "Resource": {
+                                "Fn::GetAtt": ["SqsQueue", "Arn"]
+                            },
+                            "Condition": {
+                                "ArnEquals": {
+                                    "aws:SourceArn": {
+                                        "Fn::Sub": [
+                                            "arn:aws:sns:${region}:${account}:OpportunityListingUpdate-develop",
+                                            {
+                                                "region": {
+                                                    "Ref": "AWS::Region"
+                                                },
+                                                "account": {
+                                                    "Ref": "AWS::AccountId"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                "Queues": [
+                    {
+                        "Ref": "SqsQueue"
+                    }
+                ]
+            }
+        },
+        "SnsSubscription": {
+            "Type": "AWS::SNS::Subscription",
+            "Properties": {
+                "Protocol": "sqs",
+                "Endpoint": {
+                    "Fn::GetAtt": ["SqsQueue", "Arn"]
+                },
+                "TopicArn": {
+                    "Fn::Sub": [
+                        "arn:aws:sns:${region}:${account}:OpportunityListingUpdate-develop",
+                        {
+                            "region": {
+                                "Ref": "AWS::Region"
+                            },
+                            "account": {
+                                "Ref": "AWS::AccountId"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "EventSourceMapping": {
+            "DependsOn": ["lambdaexecutionpolicy"],
+            "Type": "AWS::Lambda::EventSourceMapping",
+            "Properties": {
+                "EventSourceArn": {
+                    "Fn::GetAtt": ["SqsQueue", "Arn"]
+                },
+                "FunctionName": {
+                    "Fn::GetAtt": ["LambdaFunction", "Arn"]
+                }
+            }
+        },
+        "LambdaExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": {
+                    "Fn::If": [
+                        "ShouldNotCreateEnvResources",
+                        "ukripocfrontdoorLambdaRolec1edfa98",
+                        {
+                            "Fn::Join": [
+                                "",
+                                [
+                                    "ukripocfrontdoorLambdaRolec1edfa98",
+                                    "-",
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": ["lambda.amazonaws.com"]
+                            },
+                            "Action": ["sts:AssumeRole"]
+                        }
+                    ]
+                }
+            }
+        },
+        "lambdaexecutionpolicy": {
+            "DependsOn": ["LambdaExecutionRole"],
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "lambda-execution-policy",
+                "Roles": [
+                    {
+                        "Ref": "LambdaExecutionRole"
+                    }
+                ],
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "logs:CreateLogGroup",
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                            ],
+                            "Resource": {
+                                "Fn::Sub": [
+                                    "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
+                                    {
+                                        "region": {
+                                            "Ref": "AWS::Region"
+                                        },
+                                        "account": {
+                                            "Ref": "AWS::AccountId"
+                                        },
+                                        "lambda": {
+                                            "Ref": "LambdaFunction"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "dynamodb:GetItem",
+                                "dynamodb:PutItem",
+                                "dynamodb:UpdateItem",
+                                "dynamodb:DeleteItem",
+                                "dynamodb:Query"
+                            ],
+                            "Resource": {
+                                "Fn::Sub": [
+                                    "arn:aws:dynamodb:${region}:${account}:*",
+                                    {
+                                        "region": {
+                                            "Ref": "AWS::Region"
+                                        },
+                                        "account": {
+                                            "Ref": "AWS::AccountId"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "sqs:ReceiveMessage",
+                                "sqs:DeleteMessage",
+                                "sqs:GetQueueAttributes"
+                            ],
+                            "Resource": "*"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "Name": {
+            "Value": {
+                "Ref": "LambdaFunction"
+            }
+        },
+        "Arn": {
+            "Value": {
+                "Fn::GetAtt": ["LambdaFunction", "Arn"]
+            }
+        },
+        "Region": {
+            "Value": {
+                "Ref": "AWS::Region"
+            }
+        }
+    }
 }
