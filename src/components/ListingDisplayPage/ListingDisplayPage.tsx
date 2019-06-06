@@ -1,7 +1,6 @@
 import React, { FC, HTMLAttributes } from "react";
 import gql from "graphql-tag";
 import { useQuery } from "react-apollo-hooks";
-import LoadingBox from "@govuk-react/loading-box";
 import { getOpportunity } from "../../graphql/queries";
 import { GetOpportunityQuery } from "../../API";
 import ListingDisplay from "../ListingDisplay/ListingDisplay";

@@ -70,13 +70,37 @@
         "babel-loader": "8.0.5",
         "classnames": "^2.2.6",
         "eslint": "^5.16.0",
+        "husky": ">=1",
         "hygen": "^4.0.2",
+        "lint-staged": ">=8",
         "node-sass": "^4.12.0",
+        "prettier": "^1.17.1",
         "react-test-renderer": "^16.8.6",
         "typescript": "^3.4.5",
         "typescript-json-schema": "^0.38.0"
     },
     "resolutions": {
         "babel-jest": "24.7.1"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "linters": {
+            "*.{css,scss,json,md}": [
+                "prettier --write",
+                "git add"
+            ],
+            "*.{js,jsx,ts,tsx}": [
+                "eslint --fix --max-warnings=0",
+                "git add"
+            ]
+        },
+        "ignore": [
+            "**/package.json",
+            "**/package-lock.json"
+        ]
     }
 }
