@@ -61,6 +61,8 @@ export const ListingDisplay: FC<Props> = ({ opportunityListing, loading }) => {
         closeDate = new Date(opp.closeDate);
     }
 
+    const applicationUrl = "https://develop.d1jo86e788g8p5.amplifyapp.com";
+
     return (
         <section>
             {backlink}
@@ -99,11 +101,7 @@ export const ListingDisplay: FC<Props> = ({ opportunityListing, loading }) => {
                 </GridRow>
             )}
             <P mb={9}>{opp.description}</P>
-            <a
-                href={`https://feature-demo-tidy-up.d1jo86e788g8p5.amplifyapp.com/apply/${
-                    opp.id
-                }`}
-            >
+            <a href={`${applicationUrl}/apply/${opp.id}`}>
                 <Button buttonColour={ukriGreen}>Start application</Button>
             </a>
         </section>
