@@ -9,10 +9,23 @@ import Button from "@govuk-react/button";
 import { Link as RouterLink } from "@reach/router";
 import Skeleton from "react-loading-skeleton";
 
-import { GetOpportunityQuery } from "../../API";
 import { ukriGreen, Title } from "../../theme";
+
+export type GetOpportunity = {
+    getOpportunity: {
+        __typename: "Opportunity";
+        id: string;
+        name: string;
+        description: string | null;
+        openDate: string | null;
+        closeDate: string | null;
+        opportunityId: string;
+        funders: Array<string | null> | null;
+    } | null;
+};
+
 interface Props extends HTMLAttributes<HTMLElement> {
-    opportunityListing?: GetOpportunityQuery;
+    opportunityListing?: GetOpportunity;
     loading?: boolean;
 }
 
@@ -61,6 +74,9 @@ export const ListingDisplay: FC<Props> = ({ opportunityListing, loading }) => {
         closeDate = new Date(opp.closeDate);
     }
 
+    const applicationUrl =
+        "https://feature-demo.d1jo86e788g8p5.amplifyapp.com/";
+
     return (
         <section>
             {backlink}
@@ -99,7 +115,7 @@ export const ListingDisplay: FC<Props> = ({ opportunityListing, loading }) => {
                 </GridRow>
             )}
             <P mb={9}>{opp.description}</P>
-            <a href={`https://www.example.com/apply/${opp.id}`}>
+            <a href={`${applicationUrl}/apply/${opp.opportunityId}`}>
                 <Button buttonColour={ukriGreen}>Start application</Button>
             </a>
         </section>
