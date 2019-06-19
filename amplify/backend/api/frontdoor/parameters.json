@@ -1,5 +1,4 @@
 {
     "AppSyncApiName": "frontdoor",
-    "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "APIKeyExpirationEpoch": "1589728694"
+    "DynamoDBBillingMode": "PAY_PER_REQUEST"
 }

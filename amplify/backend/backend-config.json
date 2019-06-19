@@ -1,28 +1,26 @@
 {
-	"api": {
-		"frontdoor": {
-			"service": "AppSync",
-			"providerPlugin": "awscloudformation",
-			"output": {
-				"securityType": "API_KEY"
-			}
-		}
-	},
-	"auth": {},
-	"function": {
-		"opportunityingest": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [
-				{
-					"category": "api",
-					"resourceName": "frontdoor",
-					"attributes": [
-						"GraphQLAPIIdOutput"
-					]
-				}
-			]
-		}
-	}
+    "api": {
+        "frontdoor": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation",
+            "output": {
+                "securityType": "API_KEY"
+            }
+        }
+    },
+    "auth": {},
+    "function": {
+        "opportunityingest": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true,
+            "dependsOn": [
+                {
+                    "category": "api",
+                    "resourceName": "frontdoor",
+                    "attributes": ["GraphQLAPIIdOutput"]
+                }
+            ]
+        }
+    }
 }
