@@ -9,23 +9,12 @@ import Button from "@govuk-react/button";
 import { Link as RouterLink } from "@reach/router";
 import Skeleton from "react-loading-skeleton";
 
+import { GetOpportunityQuery } from "../../API";
+
 import { ukriGreen, Title } from "../../theme";
 
-export type GetOpportunity = {
-    getOpportunity: {
-        __typename: "Opportunity";
-        id: string;
-        name: string;
-        description: string | null;
-        openDate: string | null;
-        closeDate: string | null;
-        opportunityId: string;
-        funders: Array<string | null> | null;
-    } | null;
-};
-
 interface Props extends HTMLAttributes<HTMLElement> {
-    opportunityListing?: GetOpportunity;
+    opportunityListing?: GetOpportunityQuery;
     loading?: boolean;
 }
 
