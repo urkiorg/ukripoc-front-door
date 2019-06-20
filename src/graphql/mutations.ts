@@ -9,6 +9,7 @@ export const createOpportunity = `mutation CreateOpportunity($input: CreateOppor
     openDate
     closeDate
     funders
+    opportunityId
   }
 }
 `;
@@ -20,6 +21,7 @@ export const updateOpportunity = `mutation UpdateOpportunity($input: UpdateOppor
     openDate
     closeDate
     funders
+    opportunityId
   }
 }
 `;
@@ -31,6 +33,7 @@ export const deleteOpportunity = `mutation DeleteOpportunity($input: DeleteOppor
     openDate
     closeDate
     funders
+    opportunityId
   }
 }
 `;
