@@ -8,6 +8,7 @@ export type CreateOpportunityInput = {
   openDate?: string | null,
   closeDate?: string | null,
   funders?: Array< string | null > | null,
+  opportunityId?: string | null,
 };
 
 export type UpdateOpportunityInput = {
@@ -17,6 +18,7 @@ export type UpdateOpportunityInput = {
   openDate?: string | null,
   closeDate?: string | null,
   funders?: Array< string | null > | null,
+  opportunityId?: string | null,
 };
 
 export type DeleteOpportunityInput = {
@@ -30,6 +32,7 @@ export type ModelOpportunityFilterInput = {
   openDate?: ModelStringFilterInput | null,
   closeDate?: ModelStringFilterInput | null,
   funders?: ModelStringFilterInput | null,
+  opportunityId?: ModelStringFilterInput | null,
   and?: Array< ModelOpportunityFilterInput | null > | null,
   or?: Array< ModelOpportunityFilterInput | null > | null,
   not?: ModelOpportunityFilterInput | null,
@@ -74,6 +77,7 @@ export type CreateOpportunityMutation = {
     openDate: string | null,
     closeDate: string | null,
     funders: Array< string | null > | null,
+    opportunityId: string | null,
   } | null,
 };
 
@@ -90,6 +94,7 @@ export type UpdateOpportunityMutation = {
     openDate: string | null,
     closeDate: string | null,
     funders: Array< string | null > | null,
+    opportunityId: string | null,
   } | null,
 };
 
@@ -106,6 +111,7 @@ export type DeleteOpportunityMutation = {
     openDate: string | null,
     closeDate: string | null,
     funders: Array< string | null > | null,
+    opportunityId: string | null,
   } | null,
 };
 
@@ -122,6 +128,7 @@ export type GetOpportunityQuery = {
     openDate: string | null,
     closeDate: string | null,
     funders: Array< string | null > | null,
+    opportunityId: string | null,
   } | null,
 };
 
@@ -142,6 +149,7 @@ export type ListOpportunitysQuery = {
       openDate: string | null,
       closeDate: string | null,
       funders: Array< string | null > | null,
+      opportunityId: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -156,6 +164,7 @@ export type OnCreateOpportunitySubscription = {
     openDate: string | null,
     closeDate: string | null,
     funders: Array< string | null > | null,
+    opportunityId: string | null,
   } | null,
 };
 
@@ -168,6 +177,7 @@ export type OnUpdateOpportunitySubscription = {
     openDate: string | null,
     closeDate: string | null,
     funders: Array< string | null > | null,
+    opportunityId: string | null,
   } | null,
 };
 
@@ -180,5 +190,6 @@ export type OnDeleteOpportunitySubscription = {
     openDate: string | null,
     closeDate: string | null,
     funders: Array< string | null > | null,
+    opportunityId: string | null,
   } | null,
 };

@@ -9,6 +9,7 @@ export const getOpportunity = `query GetOpportunity($id: ID!) {
     openDate
     closeDate
     funders
+    opportunityId
   }
 }
 `;
@@ -25,6 +26,7 @@ export const listOpportunitys = `query ListOpportunitys(
       openDate
       closeDate
       funders
+      opportunityId
     }
     nextToken
   }

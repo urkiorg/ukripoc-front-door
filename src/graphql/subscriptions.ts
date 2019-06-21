@@ -9,6 +9,7 @@ export const onCreateOpportunity = `subscription OnCreateOpportunity {
     openDate
     closeDate
     funders
+    opportunityId
   }
 }
 `;
@@ -20,6 +21,7 @@ export const onUpdateOpportunity = `subscription OnUpdateOpportunity {
     openDate
     closeDate
     funders
+    opportunityId
   }
 }
 `;
@@ -31,6 +33,7 @@ export const onDeleteOpportunity = `subscription OnDeleteOpportunity {
     openDate
     closeDate
     funders
+    opportunityId
   }
 }
 `;

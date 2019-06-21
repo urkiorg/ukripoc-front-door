@@ -5,4 +5,5 @@ type Opportunity @model {
     openDate: String
     closeDate: String
     funders: [String]
+    opportunityId: String
 }
