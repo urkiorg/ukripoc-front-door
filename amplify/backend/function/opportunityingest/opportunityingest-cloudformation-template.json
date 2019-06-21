@@ -63,8 +63,8 @@
                 "Runtime": "nodejs8.10",
                 "Timeout": "25",
                 "Code": {
-                    "S3Bucket": "ukripoc-front-door-fddev-20190514135627-deployment",
-                    "S3Key": "amplify-builds/opportunityingest-1561020529-latest-build.zip"
+                    "S3Bucket": "ukripoc-front-door-devconsole-20190520120037-deployment",
+                    "S3Key": "amplify-builds/opportunityingest-1559731778-latest-build.zip"
                 }
             }
         },
