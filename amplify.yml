@@ -6,7 +6,8 @@ backend:
                 - npm install -g @aws-amplify/cli@latest
         build:
             commands:
-                - env
+                - nvm use 10
+                - ./build-lambdas.sh
                 - amplifyPush --simple
 frontend:
     phases:
