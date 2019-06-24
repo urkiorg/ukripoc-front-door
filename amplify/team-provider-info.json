@@ -13,14 +13,26 @@
     },
     "devconsole": {
         "awscloudformation": {
-            "AuthRoleName": "ukripoc-front-door-devconsole-20190520120037-authRole",
-            "UnauthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-devconsole-20190520120037-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-devconsole-20190520120037-authRole",
+            "AuthRoleName": "ukripoc-front-door-develop-20190621145147-authRole",
+            "UnauthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-develop-20190621145147-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-develop-20190621145147-authRole",
             "Region": "eu-west-1",
-            "DeploymentBucketName": "ukripoc-front-door-devconsole-20190520120037-deployment",
-            "UnauthRoleName": "ukripoc-front-door-devconsole-20190520120037-unauthRole",
-            "StackName": "ukripoc-front-door-devconsole-20190520120037",
-            "StackId": "arn:aws:cloudformation:eu-west-1:475991803334:stack/ukripoc-front-door-devconsole-20190520120037/e167f1e0-7af6-11e9-97f5-0aaf98d2f8ea"
+            "DeploymentBucketName": "ukripoc-front-door-develop-20190621145147-deployment",
+            "UnauthRoleName": "ukripoc-front-door-develop-20190621145147-unauthRole",
+            "StackName": "ukripoc-front-door-develop-20190621145147",
+            "StackId": "arn:aws:cloudformation:eu-west-1:475991803334:stack/ukripoc-front-door-develop-20190621145147/e167f1e0-7af6-11e9-97f5-0aaf98d2f8ea"
+        }
+    },
+    "torchiadev": {
+        "awscloudformation": {
+            "AuthRoleName": "ukripoc-front-door-torchiadev-20190621174558-authRole",
+            "UnauthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-torchiadev-20190621174558-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::475991803334:role/ukripoc-front-door-torchiadev-20190621174558-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "ukripoc-front-door-torchiadev-20190621174558-deployment",
+            "UnauthRoleName": "ukripoc-front-door-torchiadev-20190621174558-unauthRole",
+            "StackName": "ukripoc-front-door-torchiadev-20190621174558",
+            "StackId": "arn:aws:cloudformation:eu-west-1:475991803334:stack/ukripoc-front-door-torchiadev-20190621174558/0c1bdb70-9444-11e9-bb00-0290198c1bb6"
         }
     }
 }
