@@ -6,7 +6,7 @@ import LoadingBox from "@govuk-react/loading-box";
 import { listOpportunitys } from "../../graphql/queries";
 interface Props extends HTMLAttributes<HTMLElement> {}
 
-const LIST_OPPORTUNITIES = gql(listOpportunitys);
+const LIST_OPPORTUNITIES = gql(listOpportunitys, { limit: 100, offset: 0 });
 
 export const OpportunityIndexPage: FC<Props> = ({ ...props }) => {
     const { data, error, loading } = useQuery(LIST_OPPORTUNITIES, {
