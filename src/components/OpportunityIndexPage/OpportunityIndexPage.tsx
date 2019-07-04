@@ -6,11 +6,12 @@ import LoadingBox from "@govuk-react/loading-box";
 import { listOpportunitys } from "../../graphql/queries";
 interface Props extends HTMLAttributes<HTMLElement> {}
 
-const LIST_OPPORTUNITIES = gql(listOpportunitys, { limit: 100, offset: 0 });
+const LIST_OPPORTUNITIES = gql(listOpportunitys);
 
 export const OpportunityIndexPage: FC<Props> = ({ ...props }) => {
     const { data, error, loading } = useQuery(LIST_OPPORTUNITIES, {
-        fetchPolicy: "cache-and-network"
+        fetchPolicy: "cache-and-network",
+        variables: { limit: 100 }
     });
 
     if (error) {
